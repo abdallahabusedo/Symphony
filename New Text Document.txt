@@ -1,0 +1,9 @@
+from PIL import Image
+import cv2
+import numpy as np
+from skimage.filters import gaussian
+
+path = "lool.png"
+img = cv2.imread(path, 0)  # to read the image in a grey scale mode
+gaussian_filtered = gaussian(img,sigma=20);
+cv2.cv2.imwrite('filtered.png', gaussian_filtered)
