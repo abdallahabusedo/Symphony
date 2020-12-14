@@ -40,7 +40,7 @@ binary_image = Image > threshold_local_value
 
 result 
 
-![image](https://user-images.githubusercontent.com/42722816/102087228-e9a9e300-3e21-11eb-9376-404219cb175e.png)
+![image](https://user-images.githubusercontent.com/42722816/102087446-3beb0400-3e22-11eb-83b1-e1ff83628098.png)
 
 
 ## Contributors
