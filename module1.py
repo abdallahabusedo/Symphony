@@ -1,6 +1,9 @@
 import cv2
 from skimage.filters import threshold_otsu, threshold_local
 from skimage import io
+from skimage import data,transform,img_as_float
+import math
+import matplotlib.pyplot as plt
 import scipy
 from scipy import ndimage, misc
 from skimage.morphology import binary_erosion, binary_dilation, binary_closing,skeletonize, thin
@@ -117,6 +120,7 @@ S = np.linalg.inv(np.dot(AT,A))
 W = np.dot(AT,b)
 HH = np.dot(S,W)
 
+# HH = np.dot(np.linalg.inv(A),b)
 
 # HH2 = np.dot(np.linalg.inv(A),b)
 # print(HH2)
@@ -152,14 +156,27 @@ rotated_array_image = scipy.ndimage.rotate(np.array(Image),angle=angle_degree)
 # imgWarpColored = cv2.warpPerspective(img, matrix, (widthImg, heightImg))
 # io.imshow(imgBigContour)
 # io.show()
+# print(image_width,image_height)
+# new_image =np.ones((image_width,image_height))
+# for x in range(image_width-1):
+#     for y in range(image_height-1):
+#         newx = (h11*x+h12*y+h13)/(h31*x+h32*y+1)
+#         newy = (h21*x+h22*y+h23)/(h31*x+h32*y+1)
+#         if newx>=image_width or newy>=image_height:
+#             continue
+#         new_image[int(newx),int(newy)] = Image[x,y]
+#
+#
+# new_image = new_image.astype(np.uint8)
+# # io.imshow(new_image)
+# # io.show()
 
-new_image =np.ones((image_width,image_height))
-for x in range(image_width-1):
-    for y in range(image_height-1):
-        newx = (h11*x+h12*y+h13)/(h31*x+h32*y+1)
-        newy = (h21*x+h22*y+h23)/(h31*x+h32*y+1)
-        new_image[int(newx),int(newy)] = Image[x,y]
+matrix = np.array([ [h11,h12,h13],
+    [h21,h22,h23],
+    [h31,h32,h33]
+])
 
-
-io.imshow(new_image)
+tform = transform.ProjectiveTransform(matrix=matrix)
+tf_img = transform.warp(Image,tform)
+io.imshow(tf_img)
 io.show()
