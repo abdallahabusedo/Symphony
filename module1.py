@@ -106,7 +106,7 @@ A = [[ xc1, yc1, 1, 0, 0, 0, -xc1*x1, -yc1*x1],
      [xc4, yc4, 1,0,0,0,-xc4*x4, -yc4*x4],
      [0,0,0,xc4,yc4,1, -xc4*y4, -yc4*y4]]
 
-b = [ [x1],
+b = [[x1],
       [y1],
       [x2],
       [y2],
@@ -120,10 +120,7 @@ S = np.linalg.inv(np.dot(AT,A))
 W = np.dot(AT,b)
 HH = np.dot(S,W)
 
-# HH = np.dot(np.linalg.inv(A),b)
 
-# HH2 = np.dot(np.linalg.inv(A),b)
-# print(HH2)
 h11 = HH[0][0]
 h12 = HH[1][0]
 h13 = HH[2][0]
@@ -143,33 +140,6 @@ s = np.sqrt(np.square(dx)+ np.square(dy))
 angle = np.arcsin(dy/s)
 angle_degree = (angle/(22/7))*180
 
-rotated_array_image = scipy.ndimage.rotate(np.array(Image),angle=angle_degree)
-#rotated_image = im.fromarray(rotated_array_image, 'RGB')
-# imag = im.open(Image_path)
-# imag.rotate(180-(angle_degree+100)).show()
-
-# imgWarpColored = cv2.warpPerspective(Image, HH, (w, h))
-
-# pts1 = np.float32(biggest) # PREPARE POINTS FOR WARP
-# pts2 = np.float32([[0, 0],[widthImg, 0], [0, heightImg],[widthImg, heightImg]]) # PREPARE POINTS FOR WARP
-# matrix = cv2.getPerspectiveTransform(pts1, pts2)
-# imgWarpColored = cv2.warpPerspective(img, matrix, (widthImg, heightImg))
-# io.imshow(imgBigContour)
-# io.show()
-# print(image_width,image_height)
-# new_image =np.ones((image_width,image_height))
-# for x in range(image_width-1):
-#     for y in range(image_height-1):
-#         newx = (h11*x+h12*y+h13)/(h31*x+h32*y+1)
-#         newy = (h21*x+h22*y+h23)/(h31*x+h32*y+1)
-#         if newx>=image_width or newy>=image_height:
-#             continue
-#         new_image[int(newx),int(newy)] = Image[x,y]
-#
-#
-# new_image = new_image.astype(np.uint8)
-# # io.imshow(new_image)
-# # io.show()
 
 matrix = np.array([ [h11,h12,h13],
     [h21,h22,h23],
