@@ -47,7 +47,7 @@ def divide(output_path,img):
     #---------------------------dilates the image to get the staff lines only-------------------------------------------------------------
     retval, img_binary = cv2.threshold(img,215,255,type=cv2.THRESH_BINARY)
     dilation = cv2.dilate(img_binary,kernel,iterations =50)
-    w,h=img.shape
+    Img_h,Img_w=img.shape
     show_images([img,dilation])
 #---------------------------finds the contoours that surround the lines ------------------------------------------------------------
     rect = cv2.getStructuringElement(cv2.MORPH_RECT, (60, 50)) #the structure element
@@ -78,15 +78,21 @@ def divide(output_path,img):
         results.append((x,y,w,h)) #getting the 4 contours that we have (4 groups of the numbers)
     #When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
     i=1
+    xup=0
     for box in results:
         X, Y, width, height = box
+        if i == len(results):
+            xl=Img_h
+        else:
+            xl,yl,widthl,heightl=results[i]
         cv2.rectangle(dilation, (int(Y), int(X)), (int(Y+width), int(X+height)), (0, 255, 0),1)
-        Image=img[int(X-9):int(X+height+10),int(0):int(2*Y+w),] #Y-50
+        Image=img[int(X-(X-xup)/2):int(X+height+((xl-X)/2)),0:int(Img_w),] #Y-50
         cv2.imwrite((output_path+str(i)+".bmp"),Image)
     #     retval,thr_image=cv2.threshold(Image,127,255,type=cv2.THRESH_BINARY)
     #     thr_image = cv2.erode(thr_image,kernel2,iterations =2)
     #     cv2.imwrite(("D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\thresholded"+str(i)+".bmp"),thr_image)
         i=i+1
+        xup=X+height
         show_images([img , Image])#,thr_image])
     show_images([dilation])
 
