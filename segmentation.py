@@ -79,9 +79,10 @@ def divide(output_path,img):
     #When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
     i=1
     xup=0
+    l=len(results)
     for box in results:
         X, Y, width, height = box
-        if i == len(results):
+        if i == l:
             xl=Img_h
         else:
             xl,yl,widthl,heightl=results[i]
@@ -95,8 +96,30 @@ def divide(output_path,img):
         xup=X+height
         show_images([img , Image])#,thr_image])
     show_images([dilation])
-
-in_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\note2.png"
-out_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\cut"
+    return l
+#------------------------------------------------------------------------------------------------------------
+    ####### removing staff lines 
+    ## for more clear img ,uncomment binarization
+def remove_lines(out_path,in_path,img_count):
+    kernel=np.array([[0, 0, 0],[1, 1, 1],[0, 0, 0]],np.uint8)
+    kernel2 =  np.array([
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0]
+    ],np.uint8)
+    for i in range(1,img_count):
+        img = cv2.imread((in_path+str(i)+".bmp"))
+        gray= cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        erosion = cv2.erode(gray,kernel,iterations = 1)
+        dilation = cv2.dilate(erosion,kernel2,iterations =1)
+        cv2.imwrite((out_path+str(i)+".bmp"),dilation)
+        #dilation2 = cv2.dilate(dilation,kernel2,iterations =1)
+        #_, binarizedImage = cv2.threshold(dilation, 80, 255,cv2.THRESH_TOZERO )
+        show_images([gray,dilation])
+#----------------------------------------------------------------------------------------------------------------
+in_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\note3.jpeg"
+division_out_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\cut"
+lines_removed_out_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\lines_removed"
 img = cv2.imread(in_path,0)
-divide(out_path,img) #divide the image to small images containing each row
+img_count=divide(division_out_path,img) #divide the image to small images containing each row
+remove_lines(lines_removed_out_path,division_out_path,img_count)
