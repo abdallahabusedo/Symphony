@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import skimage
 from skimage.measure import find_contours
-import skimage
+from skimage import io
 import scipy.ndimage
 import matplotlib.pyplot as plt
 from math import ceil
@@ -48,7 +48,6 @@ def divide(output_path,img):
     retval, img_binary = cv2.threshold(img,215,255,type=cv2.THRESH_BINARY)
     dilation = cv2.dilate(img_binary,kernel,iterations =50)
     Img_h,Img_w=img.shape
-    show_images([img,dilation])
 #---------------------------finds the contoours that surround the lines ------------------------------------------------------------
     rect = cv2.getStructuringElement(cv2.MORPH_RECT, (60, 50)) #the structure element
     img_closing = binary_closing(dilation,rect)
@@ -61,16 +60,14 @@ def divide(output_path,img):
         (x,y,w,h) = ll[0], ll[1], wh[1], wh[0]
         results.append((x,y,w,h)) #getting the 4 contours that we have (4 groups of the numbers)
     #When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
+    line_positions=results
     for box in results:
         X, Y, width, height = box
         cv2.rectangle(dilation, (int(Y), int(X)), (int(Y+width), int(X+height)), (0, 255, 0),10)
-    show_images([img_binary,img_closing,dilation])
-
 #---------------------------finds the main big contours to cut the image-------------------------------------------------------------
     img_closing = binary_closing(dilation,rect)
     contours = find_contours(dilation,0.8)
     results = []
-
     for c in contours :
         ll, ur = np.min(c, 0), np.max(c, 0) #getting the two points
         wh = ur - ll  #getting the width and the height
@@ -89,14 +86,9 @@ def divide(output_path,img):
         cv2.rectangle(dilation, (int(Y), int(X)), (int(Y+width), int(X+height)), (0, 255, 0),1)
         Image=img[int(X-(X-xup)/2):int(X+height+((xl-X)/2)),0:int(Img_w),] #Y-50
         cv2.imwrite((output_path+str(i)+".bmp"),Image)
-    #     retval,thr_image=cv2.threshold(Image,127,255,type=cv2.THRESH_BINARY)
-    #     thr_image = cv2.erode(thr_image,kernel2,iterations =2)
-    #     cv2.imwrite(("D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\thresholded"+str(i)+".bmp"),thr_image)
         i=i+1
         xup=X+height
-        show_images([img , Image])#,thr_image])
-    show_images([dilation])
-    return l
+    return l ,line_positions
 #------------------------------------------------------------------------------------------------------------
     ####### removing staff lines 
     ## for more clear img ,uncomment binarization
@@ -113,13 +105,10 @@ def remove_lines(out_path,in_path,img_count):
         erosion = cv2.erode(gray,kernel,iterations = 1)
         dilation = cv2.dilate(erosion,kernel2,iterations =1)
         cv2.imwrite((out_path+str(i)+".bmp"),dilation)
-        #dilation2 = cv2.dilate(dilation,kernel2,iterations =1)
-        #_, binarizedImage = cv2.threshold(dilation, 80, 255,cv2.THRESH_TOZERO )
-        show_images([gray,dilation])
 #----------------------------------------------------------------------------------------------------------------
 in_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\note3.jpeg"
 division_out_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\cut"
 lines_removed_out_path="D:\\college\\cmp3\\first\\ip\\symphony\\Symphony\\lines_removed"
 img = cv2.imread(in_path,0)
-img_count=divide(division_out_path,img) #divide the image to small images containing each row
+img_count,line_positions=divide(division_out_path,img) #divide the image to small images containing each row
 remove_lines(lines_removed_out_path,division_out_path,img_count)
