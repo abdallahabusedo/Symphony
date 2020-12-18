@@ -1,4 +1,5 @@
 import cv2
+from matplotlib.pyplot import bar
 from skimage.filters import threshold_local
 from skimage import io
 from skimage import transform
@@ -21,13 +22,16 @@ threshold_local_value  = threshold_local(Image ,block_size, offset=10)
 # apply the local threshold value on the image
 binary_image = Image > threshold_local_value
 
+def Corners_Detection(binary_Image):
+    # detecting corners:
+    kernel = np.ones((5, 5))
+    binary_image_temp = binary_Image.astype(np.uint8)
+    binary_image_temp = np.invert(binary_image_temp * 255)
+    imgDial = cv2.dilate(binary_image_temp, kernel, iterations=2)  # APPLY DILATION
+    imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
+    return imgThreshold
 
-# detecting corners:
-kernel = np.ones((5, 5))
-binary_image_temp = binary_image.astype(np.uint8)
-binary_image_temp  = np.invert(binary_image_temp*255)
-imgDial = cv2.dilate(binary_image_temp, kernel, iterations=2) # APPLY DILATION
-imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
+imgThreshold =Corners_Detection(binary_image)
 
 #now we find contours
 ## FIND ALL COUNTOURS
@@ -35,9 +39,6 @@ imgContours = Image.copy()  # COPY IMAGE FOR DISPLAY PURPOSES
 imgBigContour = Image.copy()  # COPY IMAGE FOR DISPLAY PURPOSES
 contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)  # FIND ALL CONTOURS
 cv2.drawContours(imgContours, contours, -1, (0, 255, 0), 1)
-
-# io.imshow(imgContours)
-# io.show()
 
 areas_of_contours = []
 for s in contours:
@@ -52,15 +53,12 @@ for i in range(len(areas_of_contours)):
         areas.append(areas_of_contours[i])
         new_contours.append(contours[i])
 
-
 minLL = np.min(new_contours[0], 0)
 minLLX = 1000000
 minLLY = 1000000
 maxUR = np.max(new_contours[0], 0)
 maxURX = 0
 maxURY = 0
-
-
 
 for c in new_contours:
     [ll, ur] = np.min(c, 0), np.max(c, 0) #getting the two points
@@ -78,22 +76,12 @@ for c in new_contours:
     maxUR[0][1] = maxURY
     wh = maxUR - minLL  #getting the width and the height
     (x,y,w,h) = minLL[0][0], minLL[0][1], wh[0][0], wh[0][1]
-    # temp = w*h
-    # if(temp > max):
-    #     max = temp
     result=(x,y,w,h)
-    # cont = c
-    # print(minLLX,minLLY,maxURX,maxURY)
-
 
 
 #When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
 X, Y, width, height = result
 cv2.rectangle(imgBigContour, (int(minLLX), int(minLLY)), (int(maxURX), int(maxURY)), (0, 255, 0), 2)
-#
-io.imshow(imgBigContour)
-io.show()
-
 
 for cont in new_contours:
     for i in range(len(cont)):
@@ -121,8 +109,6 @@ y1 = yc1
 x2 = xc2
 x3 = xc3
 y4 = yc4
-
-
 
 A = [[ xc1, yc1, 1, 0, 0, 0, -xc1*x1, -yc1*x1],
      [0, 0, 0, xc1, yc1, 1, -xc1*y1, -yc1*y1],
@@ -163,12 +149,21 @@ matrix = np.array([
     [h21,h22,h23],
     [h31,h32,h33]])
 
-# print(minLLX,x1,minLLY,y1,maxURX, maxURY, width, height)
+kernel2 =  np.array([
+        [0, 0, 0],
+        [1, 1, 1],
+        [0, 0, 0]],np.uint8)
+
+binary_image = binary_image.astype(np.uint8)
+binary_image_temp = np.invert(binary_image*255)
+erosin_image =cv2.erode(binary_image_temp,kernel2,iterations=15)
+
+image_histogram = cv2.calcHist([erosin_image],[0],None,[256],[0,256])
+
 tf_img = Image
+if(image_histogram[255][0] < 30):
+    tform = transform.ProjectiveTransform(matrix=matrix)
+    tf_img = transform.warp(Image,tform)
 
-
-tform = transform.ProjectiveTransform(matrix=matrix)
-tf_img = transform.warp(Image,tform)
-
-# io.imshow(tf_img)
-# io.show()
+io.imshow(tf_img)
+io.show()
