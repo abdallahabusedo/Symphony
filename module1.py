@@ -157,8 +157,8 @@ kernel2 =  np.array([
 binary_image = binary_image.astype(np.uint8)
 binary_image_temp = np.invert(binary_image*255)
 erosin_image =cv2.erode(binary_image_temp,kernel2,iterations=15)
-
 image_histogram = cv2.calcHist([erosin_image],[0],None,[256],[0,256])
+
 
 tf_img = Image
 if(image_histogram[255][0] < 30):
