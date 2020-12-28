@@ -5,32 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc1e63d-4235-4ad9-9ad3-c1cd5f3284eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReadWrite.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/commonFunctions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Symphony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Symphony.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut1.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut3.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut4.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut5.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut6.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut7.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cut8.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed1.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed3.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed4.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed5.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed6.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines_removed7.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lool.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/module1.py" beforeDir="false" afterPath="$PROJECT_DIR$/module1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/note.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/note2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/note2Rot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/noteR.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/printed.png" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/module1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="281" column="33" lean-forward="true" selection-start-line="281" selection-start-column="33" selection-end-line="281" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -107,18 +114,6 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Python.module1">
     <configuration name="Module1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Symphony" />
@@ -134,6 +129,50 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Module1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReadWrite" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Symphony" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ReadWrite.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="commonFunctions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Symphony" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/commonFunctions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -167,11 +206,13 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.module1" />
+        <item itemvalue="Python.ReadWrite" />
+        <item itemvalue="Python.commonFunctions" />
         <item itemvalue="Python.Module1" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -186,6 +227,16 @@
       <workItem from="1608110422890" duration="3000" />
       <workItem from="1608110434738" duration="662000" />
       <workItem from="1608279992880" duration="5820000" />
+      <workItem from="1608563208208" duration="1612000" />
+      <workItem from="1608589010871" duration="5039000" />
+      <workItem from="1608666897225" duration="668000" />
+      <workItem from="1608817110032" duration="5000" />
+      <workItem from="1608931308469" duration="11000" />
+      <workItem from="1608972987415" duration="2111000" />
+      <workItem from="1609085148938" duration="2172000" />
+      <workItem from="1609096249457" duration="7063000" />
+      <workItem from="1609115160835" duration="1599000" />
+      <workItem from="1609150154134" duration="12976000" />
     </task>
     <servers />
   </component>
@@ -239,14 +290,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -265,9 +309,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/module1_py$module1.coverage" NAME="module1 Coverage Results" MODIFIED="1608289656626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$module1.coverage" NAME="module1 Coverage Results" MODIFIED="1609166426827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$commonFunctions.coverage" NAME="commonFunctions Coverage Results" MODIFIED="1609156786847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$ReadWrite.coverage" NAME="ReadWrite Coverage Results" MODIFIED="1609164735516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/thresholded.png" />

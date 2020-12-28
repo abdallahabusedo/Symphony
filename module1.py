@@ -1,20 +1,14 @@
 import cv2
-from matplotlib.pyplot import bar
 from skimage.filters import threshold_local
 from skimage import io
 from skimage import transform
-import scipy
-from scipy import ndimage
 import numpy as np
 from skimage.measure import find_contours
-import scipy.ndimage
 import matplotlib.pyplot as plt
-from math import ceil
-from skimage.color import rgb2gray
-from skimage.morphology import erosion, dilation, opening, closing, white_tophat
-from skimage.morphology import disk
-from skimage.morphology import binary_erosion, binary_dilation, binary_closing, skeletonize, thin
+from ReadWrite import *
+from skimage.morphology import binary_closing
 
+import time
 # get staff lines by horizontal projections
 def show_images(images, titles=None):
     # This function is used to show image(s) with titles by sending an array of images and an array of associated titles.
@@ -36,11 +30,12 @@ def show_images(images, titles=None):
     fig.set_size_inches(np.array(fig.get_size_inches()) * n_ims)
     plt.show()
 
+
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # this function divides the music sheet to sub images each containing a row of the notes
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
-def divide(output_path, img):
+def divide(img):
     kernel = np.array([
         [0, 0, 0],
         [1, 1, 1],
@@ -55,7 +50,7 @@ def divide(output_path, img):
     retval, img_binary = cv2.threshold(img, 215, 255, type=cv2.THRESH_BINARY)
     dilation = cv2.dilate(img_binary, kernel, iterations=50)
     Img_h, Img_w = img.shape
-# ---------------------------finds the contoours that surround the lines ------------------------------------------------------------
+    # ---------------------------finds the contoours that surround the lines ------------------------------------------------------------
     rect = cv2.getStructuringElement(
         cv2.MORPH_RECT, (60, 50))  # the structure element
     img_closing = binary_closing(dilation, rect)
@@ -73,8 +68,8 @@ def divide(output_path, img):
     for box in results:
         X, Y, width, height = box
         cv2.rectangle(dilation, (int(Y), int(X)),
-                      (int(Y+width), int(X+height)), (0, 255, 0), 10)
-# ---------------------------finds the main big contours to cut the image-------------------------------------------------------------
+                      (int(Y + width), int(X + height)), (0, 255, 0), 10)
+    # ---------------------------finds the main big contours to cut the image-------------------------------------------------------------
     img_closing = binary_closing(dilation, rect)
     contours = find_contours(dilation, 0.8)
     results = []
@@ -88,40 +83,41 @@ def divide(output_path, img):
     i = 1
     xup = 0
     l = len(results)
+    ROWSImages=[]
     for box in results:
         X, Y, width, height = box
         if i == l:
             xl = Img_h
         else:
             xl, yl, widthl, heightl = results[i]
-        cv2.rectangle(dilation, (int(Y), int(X)),
-                      (int(Y+width), int(X+height)), (0, 255, 0), 1)
-        Image = img[int(X-(X-xup)/2):int(X+height+((xl-X)/2)),
-                    0:int(Img_w), ]  # Y-50
-        cv2.imwrite((output_path+str(i)+".bmp"), Image)
-        i = i+1
-        xup = X+height
-    return l, line_positions
+        cv2.rectangle(dilation, (int(Y), int(X)),(int(Y + width), int(X + height)), (0, 255, 0), 1)
+        Image = img[int(X - (X - xup) / 2):int(X + height + ((xl - X) / 2)),0:int(Img_w), ]  # Y-50
+        ROWSImages.append(Image)
+        i = i + 1
+        xup = X + height
+    return l, line_positions,ROWSImages
+
 
 # ------------------------------------------------------------------------------------------------------------
-    # removing staff lines
-    # for more clear img ,uncomment binarization
+# removing staff lines
+# for more clear img ,uncomment binarization
 
 
-def remove_lines(out_path, in_path, img_count):
+def remove_lines(ROWSImages):
     kernel = np.array([[0, 0, 0], [1, 1, 1], [0, 0, 0]], np.uint8)
     kernel2 = np.array([
         [0, 1, 0],
         [0, 1, 0],
         [0, 1, 0]
     ], np.uint8)
-    for i in range(1, img_count):
-        img = cv2.imread((in_path+str(i)+".bmp"))
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    LineRemovedArray=[]
+    for i in range(len(ROWSImages)):
+        gray = ROWSImages[i]
+        #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         erosion = cv2.erode(gray, kernel, iterations=1)
         dilation = cv2.dilate(erosion, kernel2, iterations=1)
-        cv2.imwrite((out_path+str(i)+".bmp"), dilation)
-
+        LineRemovedArray.append(dilation)
+    return LineRemovedArray
 
 
 # This function handles poor lightning: by applying local thresholding on the image
@@ -139,8 +135,8 @@ def Local_Thresholding(original_image):
 
 
 # This function handles putting the image in the right prespective
-#it take as a parameter the binarized image (after the local thresholding)
-#it returns the image in the right prespective
+# it take as a parameter the binarized image (after the local thresholding)
+# it returns the image in the right prespective
 def Corners_Detection(binary_Image):
     # detecting corners:
     kernel = np.ones((5, 5))
@@ -233,7 +229,6 @@ def Corners_Detection(binary_Image):
          [0, 0, 0, xc4, yc4, 1, -xc4 * y4, -yc4 * y4]]
 
     b = [[x1], [y1], [x2], [y2], [x3], [y3], [x4], [y4]]
-
     AT = np.transpose(A)
     S = np.linalg.inv(np.dot(AT, A))
     W = np.dot(AT, b)
@@ -277,17 +272,30 @@ def Corners_Detection(binary_Image):
         tf_img = transform.warp(Image, tform)
     return tf_img
 
-Image_path = "note2Rot.png"
-# to read the image in a grey scale mode
-Image = cv2.imread(Image_path, 0)
-image_width, image_height = Image.shape
-binary_image = Local_Thresholding(Image)
-Prespected_image = Corners_Detection(binary_image)
-division_out_path = "cut"
-lines_removed_out_path = "lines_removed"
-# divide the image to small images containing each row
-img_count, line_positions = divide(division_out_path, Prespected_image)
-remove_lines(lines_removed_out_path, division_out_path, img_count)
+def objectDetection(LineRemovedArray):
+    kernel = np.ones((3, 3))
+    objectDRow=[]
+    for i in range(len(LineRemovedArray)):
+        binary_image = Local_Thresholding(LineRemovedArray[i])
+        binary_image_temp = binary_image.astype(np.uint8)
+        binary_image_temp = np.invert(binary_image_temp * 255)
+        imgDial = cv2.dilate(binary_image_temp, kernel, iterations=2)  # APPLY DILATION
+        imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
+        contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        LineRemovedArray[i] = cv2.cvtColor(LineRemovedArray[i],cv2.COLOR_GRAY2RGB)
+        cv2.drawContours(LineRemovedArray[i], contours, -1, (255, 0, 0), 1)
+        objectDRow.append(LineRemovedArray[i])
+    return objectDRow
 
-io.imshow(Prespected_image)
+fn_img_list = get_fname_images_tuple(r'D:\image processing project\Symphony\inputdata')
+for c in fn_img_list:
+    imagePath, Image = c
+    image_width, image_height = Image.shape
+    binary_image = Local_Thresholding(Image)
+    Prespected_image = Corners_Detection(binary_image)
+    img_count, line_positions , ROWSImages= divide(Prespected_image)
+    LineRemovedArray= remove_lines(ROWSImages)
+    objectDRow = objectDetection(LineRemovedArray)
+
+io.imshow(objectDRow[1])
 io.show()
