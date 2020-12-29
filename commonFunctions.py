@@ -12,7 +12,7 @@ def order_points(pts):
     rect = np.zeros((4, 2), dtype="float32")
     # the top-left point will have the smallest sum, whereas
     # the bottom-right point will have the largest sum
-    s = np.sum(pts,axis=1)
+    s = np.sum(pts, axis=1)
     rect[0] = pts[np.argmin(s)]
     rect[2] = pts[np.argmax(s)]
     # now, compute the difference between the points, the
@@ -70,8 +70,8 @@ args = vars(ap.parse_args())
 # NOTE: using the 'eval' function is bad form, but for this example
 # let's just roll with it -- in future posts I'll show you how to
 # automatically determine the coordinates without pre-supplying them
-image = cv2.imread("new2.jpeg")
-#pts = np.array(eval(args["coords"]), dtype="float32")
+image = cv2.imread("6.png")
+# pts = np.array(eval(args["coords"]), dtype="float32")
 # apply the four point tranform to obtain a "birds eye view" of
 # the image
 pts = [(262, 174), (1059, 226), (27, 587), (797, 657)]
