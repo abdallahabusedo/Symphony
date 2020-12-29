@@ -1,5 +1,5 @@
 import cv2
-from skimage.filters import threshold_local
+from skimage.filters import threshold_local, threshold_otsu
 from skimage import io
 from skimage import transform
 import numpy as np
@@ -9,6 +9,8 @@ from ReadWrite import *
 from skimage.morphology import binary_closing
 
 import time
+
+
 # get staff lines by horizontal projections
 def show_images(images, titles=None):
     # This function is used to show image(s) with titles by sending an array of images and an array of associated titles.
@@ -50,7 +52,7 @@ def divide(img):
     retval, img_binary = cv2.threshold(img, 215, 255, type=cv2.THRESH_BINARY)
     dilation = cv2.dilate(img_binary, kernel, iterations=50)
     Img_h, Img_w = img.shape
-    # ---------------------------finds the contoours that surround the lines ------------------------------------------------------------
+    # ---------------------------finds the contours that surround the lines ------------------------------------------------------------
     rect = cv2.getStructuringElement(
         cv2.MORPH_RECT, (60, 50))  # the structure element
     img_closing = binary_closing(dilation, rect)
@@ -83,19 +85,19 @@ def divide(img):
     i = 1
     xup = 0
     l = len(results)
-    ROWSImages=[]
+    ROWSImages = []
     for box in results:
         X, Y, width, height = box
         if i == l:
             xl = Img_h
         else:
             xl, yl, widthl, heightl = results[i]
-        cv2.rectangle(dilation, (int(Y), int(X)),(int(Y + width), int(X + height)), (0, 255, 0), 1)
-        Image = img[int(X - (X - xup) / 2):int(X + height + ((xl - X) / 2)),0:int(Img_w), ]  # Y-50
+        cv2.rectangle(dilation, (int(Y), int(X)), (int(Y + width), int(X + height)), (0, 255, 0), 1)
+        Image = img[int(X - (X - xup) / 2):int(X + height + ((xl - X) / 2)), 0:int(Img_w), ]  # Y-50
         ROWSImages.append(Image)
         i = i + 1
         xup = X + height
-    return l, line_positions,ROWSImages
+    return l, line_positions, ROWSImages
 
 
 # ------------------------------------------------------------------------------------------------------------
@@ -110,10 +112,9 @@ def remove_lines(ROWSImages):
         [0, 1, 0],
         [0, 1, 0]
     ], np.uint8)
-    LineRemovedArray=[]
+    LineRemovedArray = []
     for i in range(len(ROWSImages)):
         gray = ROWSImages[i]
-        #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         erosion = cv2.erode(gray, kernel, iterations=1)
         dilation = cv2.dilate(erosion, kernel2, iterations=1)
         LineRemovedArray.append(dilation)
@@ -274,7 +275,7 @@ def Corners_Detection(binary_Image):
 
 def objectDetection(LineRemovedArray):
     kernel = np.ones((3, 3))
-    objectDRow=[]
+    objectDRow = []
     for i in range(len(LineRemovedArray)):
         binary_image = Local_Thresholding(LineRemovedArray[i])
         binary_image_temp = binary_image.astype(np.uint8)
@@ -282,20 +283,22 @@ def objectDetection(LineRemovedArray):
         imgDial = cv2.dilate(binary_image_temp, kernel, iterations=2)  # APPLY DILATION
         imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
         contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        LineRemovedArray[i] = cv2.cvtColor(LineRemovedArray[i],cv2.COLOR_GRAY2RGB)
+        LineRemovedArray[i] = cv2.cvtColor(LineRemovedArray, cv2.COLOR_GRAY2RGB)
         cv2.drawContours(LineRemovedArray[i], contours, -1, (255, 0, 0), 1)
         objectDRow.append(LineRemovedArray[i])
+
     return objectDRow
 
-fn_img_list = get_fname_images_tuple(r'D:\image processing project\Symphony\inputdata')
+
+fn_img_list = get_fname_images_tuple(r'D:\image processing project\Symphony\inputdata\test 1')
 for c in fn_img_list:
     imagePath, Image = c
     image_width, image_height = Image.shape
     binary_image = Local_Thresholding(Image)
     Prespected_image = Corners_Detection(binary_image)
-    img_count, line_positions , ROWSImages= divide(Prespected_image)
-    LineRemovedArray= remove_lines(ROWSImages)
+    img_count, line_positions, ROWSImages = divide(Prespected_image)
+    LineRemovedArray = lineRemover(ROWSImages)
     objectDRow = objectDetection(LineRemovedArray)
 
-io.imshow(objectDRow[1])
+io.imshow(objectDRow)
 io.show()
