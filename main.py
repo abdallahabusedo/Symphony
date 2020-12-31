@@ -1,31 +1,23 @@
 
 #the main for one image
-
-import cv2
-from skimage import io
-import os
-import numpy as np
 from skimage.color import rgb2gray
-from skimage.measure import find_contours
 from transformation import *
+from thresholding import *
+from ReadWrite import *
+##############################
+Original_image = io.imread('inputdata/test 3/21.jpg')
 
-Original_image = io.imread('26.jpg')
-
-#rotating the image (if it needs rotation)
+################rotating
 Rotate_image = our_rotate(Original_image)
-# io.imshow(Rotate_image)
+
+#################Thresholding:
+
+rot_thresholded = localThresh(rgb2gray(Rotate_image))
+
+############################
+result = divide(rgb2gray(rot_thresholded))
+# io.imshow(result[0].astype('uint8'))
 # io.show()
-
-
-
-
-
-
-
-
-
-
-
 # image = io.imread('26.jpg',as_gray="true")
 # binary_image = Local_Thresholding(image)
 # res = getFourCorners(binary_image)
@@ -33,5 +25,5 @@ Rotate_image = our_rotate(Original_image)
 # #result = divide(gray)
 # #result3 = lineRemover(result[0])
 # #result = objectDetection(result)
-# io.imshow(res)
+# io.imshow(rot_thresholded.astype('uint8'))
 # io.show()

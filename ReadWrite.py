@@ -103,7 +103,7 @@ def divide(img):
         ROWSImages.append(Image)
         i = i + 1
         xup = X + height
-    return binary
+    return ROWSImages
 
 
 def order_points(pts):
