@@ -6,7 +6,16 @@ from skimage.transform import hough_line
 from thresholding import *
 import imutils
 
+def getlines(img):
+    # Convert the image to gray-scale
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Find the edges in the image using canny detector
+    edges = cv2.Canny(gray, 50, 200)
+    # Detect points that form a line
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 200, minLineLength=10, maxLineGap=250)
+    # Draw lines on the image
 
+    return lines
 
 def getAngle(img):
     # Convert the image to gray-scale

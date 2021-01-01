@@ -5,6 +5,9 @@ import numpy as np
 from skimage.color import rgb2gray
 from skimage.measure import find_contours
 
+from thresholding import Local_Thresholding
+
+
 def get_fname_images_tuple(directory):
     fnames = os.listdir(directory)
     to_return = []
