@@ -5,20 +5,19 @@ from transformation import *
 from thresholding import *
 from ReadWrite import *
 ##############################
-Original_image = io.imread('inputdata/test 1/4.png')
+Original_image = io.imread('inputdata/test 2/07.png')
 
 ################rotating
 Rotate_image = our_rotate(Original_image)
 
 #################Thresholding
-
-rot_thresholded = bradley_roth_numpy(rgb2gray(Rotate_image))
+thresholed_rotated = thresholding(Rotate_image)
 
 ############################
 ##############prespect
 
 
-io.imshow(np.uint8(rot_thresholded))
+io.imshow(np.uint8(thresholed_rotated))
 io.show()
 
 

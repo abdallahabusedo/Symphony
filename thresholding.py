@@ -1,6 +1,9 @@
+import copy
+
 import cv2
 import skimage
 from PIL import Image
+from scipy import ndimage
 from skimage import io
 from skimage.color import rgb2gray
 from skimage.exposure import histogram
@@ -170,8 +173,11 @@ def AdaptiveThreshold(gray_image):
                 out_img[i, j] = 255
 
     return out_img
+#####################################
+##########################################
+###############################################
 
-
+#The Chosen one:
 def bradley_roth_numpy(image, s=None, t=None):
 
     # Convert image to numpy array
@@ -247,3 +253,15 @@ def bradley_roth_numpy(image, s=None, t=None):
 
     # Return PIL image back to user
     return Image.fromarray(out)
+
+
+def thresholding(Rot_image):
+    kernel = np.array([
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1]
+    ], np.uint8)
+
+    rot_thresholded = bradley_roth_numpy(rgb2gray(Rot_image))
+    dilated_thresholded = cv2.dilate(255 - np.uint8(rot_thresholded), kernel, iterations=1)
+    return 255-dilated_thresholded
