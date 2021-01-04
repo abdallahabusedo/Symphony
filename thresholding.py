@@ -256,12 +256,6 @@ def bradley_roth_numpy(image, s=None, t=None):
 
 
 def thresholding(Rot_image):
-    kernel = np.array([
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1]
-    ], np.uint8)
 
     rot_thresholded = bradley_roth_numpy(rgb2gray(Rot_image))
-    dilated_thresholded = cv2.dilate(255 - np.uint8(rot_thresholded), kernel, iterations=1)
-    return 255-dilated_thresholded
+    return rot_thresholded

@@ -8,7 +8,8 @@ import imutils
 
 def getlines(img):
     # Convert the image to gray-scale
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = img
     # Find the edges in the image using canny detector
     edges = cv2.Canny(gray, 50, 200)
     # Detect points that form a line
@@ -19,7 +20,7 @@ def getlines(img):
 
 def getAngle(img):
     # Convert the image to gray-scale
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(np.uint8(img), cv2.COLOR_BGR2GRAY)
     # Find the edges in the image using canny detector
     edges = cv2.Canny(gray, 50, 200)
     # Detect points that form a line
@@ -33,7 +34,10 @@ def getAngle(img):
         dy = y2 - y1
         angles.append(np.rad2deg(np.math.atan2(dy, dx)))
 
+
     angles = [angle for angle in angles if angle >= 0]
+    if(len(angles) == 0):
+        return 0
     average_angle = sum(angles) / len(angles)
     return average_angle
 
@@ -56,7 +60,7 @@ def rotate_image(mat, angle):
     rotation_mat[1, 2] += bound_h/2 - image_center[1]
 
     # rotate image with the new bounds and translated rotation matrix
-    rotated_mat = cv2.warpAffine(mat, rotation_mat, (bound_w, bound_h))
+    rotated_mat = cv2.warpAffine(mat, rotation_mat, (bound_w, bound_h), borderValue=[255,255,255,0])
     return rotated_mat
 
 # the first call
