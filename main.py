@@ -23,28 +23,30 @@ Original_image = cv2.addWeighted(np.uint8(Original_image), 1. + c/127., np.uint8
 Rotate_image = our_rotate(np.asarray(Original_image))
 #################Thresholding
 thresholed_rotated = thresholding(Rotate_image)
-_,_, Rows_images = divide(np.uint8(thresholed_rotated))
+_,line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
 
 # cv.imshow("cut",Rows_images[0])
 # cv.waitKey(0)
+# Image.fromarray(Rows_images[0]).save("out.png")
 
-Image.fromarray(Rows_images[2]).save("out.png")
+for row in Rows_images:
+    bwArray = np.array(row)
+    picWidth = len(bwArray[0])
 
-bwArray = np.array(thresholed_rotated)
-picWidth = len(bwArray[0])
+    horzPicCount = horizontalProjection(bwArray)
 
-horzPicCount = horizontalProjection(bwArray)
+    lineArray = getLines(horzPicCount, picWidth)
 
-lineArray = getLines(horzPicCount, picWidth)
+    lineThickness, newLineArray = findBarLineWidth(lineArray)
 
-lineThickness, newLineArray = findBarLineWidth(lineArray)
+    lineArray = newLineArray
 
-lineArray = newLineArray
+    print(lineArray)
+    spaceSize, spaceBetweenBars = findSpacesSize(lineArray, lineThickness)
 
-print(lineArray)
-spaceSize, spaceBetweenBars = findSpacesSize(lineArray, lineThickness)
+    removed_line_pic = removeMe(row, lineArray, lineThickness)
 
-removed_line_pic = removeMe(thresholed_rotated, lineArray, lineThickness)
+
 
 
 # end time

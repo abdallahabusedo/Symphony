@@ -239,8 +239,6 @@ def divide(img):
         cv.rectangle(dilation, (int(Y), int(X)),
                       (int(Y + width), int(X + height)), (0, 255, 0), 20)
 
-    # cv.imshow("contours",np.uint8(dilation))
-    # cv.waitKey(0)
     # ---------------------------finds the main big contours to cut the image-------------------------------------------------------------
 
     contours = find_contours(dilation, 0.8)
@@ -267,5 +265,4 @@ def divide(img):
             ROWSImages.append(Image)
             i = i + 1
             xup = X + height
-
     return l, line_positions, ROWSImages
