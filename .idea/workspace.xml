@@ -5,106 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc1e63d-4235-4ad9-9ad3-c1cd5f3284eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Symphony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Symphony.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReadWrite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ReadWrite.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out.png" beforeDir="false" afterPath="$PROJECT_DIR$/out.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.484375">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="25" selection-start-line="25" selection-end-line="25" />
-                  <folding>
-                    <element signature="e#24#73#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Desktop/Music-Reader/imagePreprocessing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-478">
-                  <caret line="159" column="14" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/preprocessing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="100">
-                  <caret line="240" selection-start-line="240" selection-end-line="240" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ReadWrite.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="129" column="49" lean-forward="true" selection-start-line="129" selection-start-column="49" selection-end-line="129" selection-end-column="49" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-                  <folding>
-                    <element signature="e#24#73#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/out.png">
-              <provider selected="true" editor-type-id="images" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Desktop/Music-Reader/staffSegmentation.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="290">
-                  <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -134,12 +45,12 @@
       <list>
         <option value="$PROJECT_DIR$/Module1.py" />
         <option value="$PROJECT_DIR$/module1.py" />
-        <option value="$PROJECT_DIR$/../../iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-99-99/main.py" />
+        <option value="$USER_HOME$/iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-99-99/main.py" />
         <option value="$PROJECT_DIR$/transformation.py" />
         <option value="$PROJECT_DIR$/thresholding.py" />
-        <option value="$USER_HOME$/Desktop/Music-Reader/boundingBox.py" />
-        <option value="$USER_HOME$/Desktop/Music-Reader/imagePreprocessing.py" />
-        <option value="$USER_HOME$/Desktop/Music-Reader/staffSegmentation.py" />
+        <option value="$PROJECT_DIR$/../Music-Reader/boundingBox.py" />
+        <option value="$PROJECT_DIR$/../Music-Reader/imagePreprocessing.py" />
+        <option value="$PROJECT_DIR$/../Music-Reader/staffSegmentation.py" />
         <option value="$PROJECT_DIR$/ReadWrite.py" />
         <option value="$PROJECT_DIR$/preprocessing.py" />
         <option value="$PROJECT_DIR$/main.py" />
@@ -207,7 +118,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-01-17" />
+    <property name="last_opened_file_path" value="$USER_HOME$/iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-01-17" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -221,19 +132,29 @@
       <recent name="E:\3rd year\image proc\project\Symphony" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="ReadWrite" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Symphony" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ReadWrite.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="imagePreprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Symphony" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -242,11 +163,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop/Music-Reader" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Music-Reader" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/Music-Reader/imagePreprocessing.py" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Music-Reader/imagePreprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,6 +189,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -288,6 +211,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -305,33 +229,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop/Music-Reader" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Music-Reader" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/Music-Reader/staffSegmentation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="transformation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Symphony" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/transformation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Music-Reader/staffSegmentation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -343,14 +246,14 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.ReadWrite" />
         <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.imagePreprocessing" />
         <item itemvalue="Python.staffSegmentation" />
-        <item itemvalue="Python.transformation" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -419,14 +322,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -445,6 +341,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -465,7 +362,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/module1_py$module1.coverage" NAME="module1 Coverage Results" MODIFIED="1609256422641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ReadWrite_py$ReadWrite.coverage" NAME="ReadWrite Coverage Results" MODIFIED="1609786885719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ReadWrite_py$main.coverage" NAME="main Coverage Results" MODIFIED="1609788542150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$commonFunctions.coverage" NAME="commonFunctions Coverage Results" MODIFIED="1609256411723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ReadWrite_py$thresholding.coverage" NAME="thresholding Coverage Results" MODIFIED="1609514924331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$ReadWrite.coverage" NAME="ReadWrite Coverage Results" MODIFIED="1609257265207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$thresholding.coverage" NAME="thresholding Coverage Results" MODIFIED="1609272630280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$transformation.coverage" NAME="transformation Coverage Results" MODIFIED="1609275442521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -510,7 +410,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-99-99/main.py">
+    <entry file="file://$USER_HOME$/iplabexam-partial/iplabexam-partial/dummy-submission-STD/SEM-99-99/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
@@ -591,7 +491,7 @@
     <entry file="file://$PROJECT_DIR$/inputdata/test 3/32.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/Music-Reader/boundingBox.py">
+    <entry file="file://$PROJECT_DIR$/../Music-Reader/boundingBox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
@@ -637,7 +537,7 @@
     <entry file="file://$PROJECT_DIR$/sheet.jpeg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/Music-Reader/imagePreprocessing.py">
+    <entry file="file://$PROJECT_DIR$/../Music-Reader/imagePreprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-478">
           <caret line="159" column="14" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="14" />
@@ -647,7 +547,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/Music-Reader/staffSegmentation.py">
+    <entry file="file://$PROJECT_DIR$/../Music-Reader/staffSegmentation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />

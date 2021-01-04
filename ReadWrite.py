@@ -1,4 +1,4 @@
-import cv2
+import cv2 as cv2
 from skimage import io
 import os
 import numpy as np
@@ -38,10 +38,10 @@ def lineRemover(image):
     return result
 
 
-def objectDetection(LineRemovedArray):
+def objectDetection2(LineRemovedArray):
     kernel = np.ones((1, 1))
-    gray = cv2.cvtColor(LineRemovedArray, cv2.COLOR_BGR2GRAY)
-    binary_image = Local_Thresholding(gray)
+    #gray = cv2.cvtColor(LineRemovedArray, cv2.COLOR_BGR2GRAY)
+    binary_image = Local_Thresholding(LineRemovedArray)
     binary_image_temp = binary_image.astype(np.uint8)
     binary_image_temp = np.invert(binary_image_temp * 255)
     imgDial = cv2.dilate(binary_image_temp, kernel, iterations=2)  # APPLY DILATION
@@ -52,6 +52,18 @@ def objectDetection(LineRemovedArray):
     objectDRow = (LineRemovedArray)
     return objectDRow
 
+def objectDetection(LineRemoved):
+    contours = find_contours(LineRemoved, 0.8)
+    results = []
+    for c in contours:
+        ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
+        wh = ur - ll  # getting the width and the height
+        (x, y, w, h) = ll[0], ll[1], wh[1], wh[0]
+        results.append((x, y, w, h))
+    for box in results:
+        X, Y, width, height = box
+        cv2.rectangle(LineRemoved, (int(Y), int(X)),(int(Y + width), int(X + height)), (0, 255, 0), 1)
+    return LineRemoved
 
 def divide(img):
     kernel = np.array([

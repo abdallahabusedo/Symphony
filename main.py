@@ -1,4 +1,4 @@
-#the main for one image
+# the main for one image
 from networkx.drawing.tests.test_pylab import plt
 from scipy.ndimage import binary_fill_holes
 from skimage.feature import canny
@@ -9,52 +9,47 @@ from thresholding import *
 from ReadWrite import *
 from preprocessing import *
 import time
+
 ##############################
 start = time.time()
-Original_image = io.imread(r'E:\3rd year\image proc\project\Symphony\inputdata\test 2\02.PNG')
-
+Original_image = io.imread(r'inputdata/test 2/02.PNG')
 
 ##to modify the light in the image
-b = -30. # brightness
+b = -30.  # brightness
 c = 190.  # contrast
-Original_image = cv2.addWeighted(np.uint8(Original_image), 1. + c/127., np.uint8(Original_image), 0, b-c)
+Original_image = cv2.addWeighted(np.uint8(Original_image), 1. + c / 127., np.uint8(Original_image), 0, b - c)
 
 ################rotating
 Rotate_image = our_rotate(np.asarray(Original_image))
 #################Thresholding
 thresholed_rotated = thresholding(Rotate_image)
-_,line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
+_, line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
 
 # cv.imshow("cut",Rows_images[0])
 # cv.waitKey(0)
 # Image.fromarray(Rows_images[0]).save("out.png")
-
+removedImages = []
 for row in Rows_images:
     bwArray = np.array(row)
     picWidth = len(bwArray[0])
-
     horzPicCount = horizontalProjection(bwArray)
-
     lineArray = getLines(horzPicCount, picWidth)
-
     lineThickness, newLineArray = findBarLineWidth(lineArray)
-
     lineArray = newLineArray
-
     print(lineArray)
     spaceSize, spaceBetweenBars = findSpacesSize(lineArray, lineThickness)
-
     removed_line_pic = removeMe(row, lineArray, lineThickness)
+    removedImages.append(removed_line_pic)
 
+######### object detection ###############
+objectDetectionImages = []
+for row in removedImages:
+    objectDetectionImages.append(objectDetection(row))
 
+# Image.fromarray(objectDetectionImages[2]).save("out.png")
 
-
-# end time
 end = time.time()
-
-# total time taken
 print(f"Runtime of the program is {end - start}")
-
 
 ##############prespect
 # kernel = np.array([[0, 1, 0],
