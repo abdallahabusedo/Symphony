@@ -297,8 +297,5 @@ for c in fn_img_list:
     binary_image = Local_Thresholding(Image)
     Prespected_image = Corners_Detection(binary_image)
     img_count, line_positions, ROWSImages = divide(Prespected_image)
-    LineRemovedArray = lineRemover(ROWSImages)
-    objectDRow = objectDetection(LineRemovedArray)
-
-io.imshow(objectDRow)
-io.show()
+    # LineRemovedArray = lineRemover(ROWSImages)
+    # objectDRow = objectDetection(LineRemovedArray)

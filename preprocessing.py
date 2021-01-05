@@ -15,15 +15,11 @@ from skimage.morphology import binary_closing
 def horizontalProjection(bwArray):
     rows = len(bwArray)
     cols = len(bwArray[0])
-    print("Rows:" + str(rows))
-    print("Cols:" + str(cols))
     pixCount = [0] * rows
-
     for row in range(rows):
         for col in range(cols):
             if not bwArray[row][col]:
                 pixCount[row] +=1
-
     return pixCount
 
 #finds the rows that have black pixels along most of the picture
@@ -32,13 +28,10 @@ def getLines(pixArray, picWidth):
     for row in range(len(pixArray)):
         if pixArray[row] >= (picWidth * 0.8): # take only the lines with specific length
             lineArray.append(row) #append the row that the line is found in
-
-    print("Lines found at: " + str(lineArray))
     return lineArray
 
 
 def findBarLineWidth(lineArray):
-
     lineThicknesses = []
     newLineArray = []
     i=0
@@ -54,33 +47,20 @@ def findBarLineWidth(lineArray):
             thickness = 1
         i+=1
     lineThicknesses.append(thickness+1)
-    print("Linewidths:" + str(lineThicknesses))
-
     if all(val==lineThicknesses[0] for val in lineThicknesses):
         return [lineThicknesses[0],newLineArray]
-
     return [lineThicknesses,newLineArray]
 
 
 def findSpacesSize(lineArray, lineThickness):
-
     lineDistances =[]
-
     for i in range(len(lineArray)-1):
         lineDistances.append(lineArray[i+1] - lineArray[i])
-
     #gets the mode of the array(most common space size)
-    print("Line distances" + str(lineDistances))
-
     spacesCount = Counter(lineDistances)
-
     spaceBetweenBars = max(lineDistances)
     tempSpaceInfo = spacesCount.most_common(1) # returns the most frequent distance
-
-
     commonSize = tempSpaceInfo[0][0]
-    print("tempSpaceInfo[0][0]: " + str(tempSpaceInfo[0][0]))
-    tempCommon = 0
     if commonSize == 1: #fixing the commonSize
         j=0
         while j<len(lineDistances):
@@ -90,57 +70,40 @@ def findSpacesSize(lineArray, lineThickness):
                     commonSize = tempCommon
                     break
             j+=1
-
-
     i=0
     count = 0
     spaceSizeArr = []
-
     while i < len(lineDistances):
         #space sizes can be inconsistent, so if its within ~10% then its accepted
         if lineDistances[i] > (commonSize-1)*0.9 and lineDistances[i] < (commonSize+1)*1.1:
-
             spaceSizeArr.append(lineDistances[i])
             count+=1
         else:
             if lineDistances[i] != 1: #if its 1 then its part of the same line so dont reset
                 count = 0
                 spaceSizeArr = []
-
         if count == 4:
-            print("Spaces size:" + str(spaceSizeArr))
-
             return [spaceSizeArr,spaceBetweenBars]
         i+=1
-
-    #shouldnt happen
-    #raise
-    print("I should not be here!!!!! (findSpacesSize)")
     return []
 
 #removes the bar lines from the sheet music
 def removeBarLines(lineLocations,pixels, barLineWidth, picWidth):
-
     oneLineThickness = (len(barLineWidth) == 1)
     lineThickness = barLineWidth[0]
-
     lineNum = 0
     lineCounter = 0
     while lineNum < len(lineLocations):
         if not oneLineThickness:
             lineThickness = barLineWidth[lineCounter]
-
         pixels = eraseLine(lineThickness, lineLocations[lineNum],pixels, picWidth)
-        #lineNum+=lineThickness
         lineNum+=1
         lineCounter +=1
-
     return pixels
 
 #removes a single line with given thickness from the sheet music without
 #effecting any other objects on the sheet
 def eraseLine(thickness, startLine, image, picWidth): #doesn't erase line, but make them white
-
     topLine = startLine
     botLine = startLine + thickness -1
     for col in range(picWidth):
@@ -161,18 +124,13 @@ def eraseLine(thickness, startLine, image, picWidth): #doesn't erase line, but m
                     thick = 1
                 for j in range(int(thick)):
                     image.itemset((botLine - j, col),255)
-
-
     return image
 
 
 def removeMe(bwImg, lineLocations, barLineWidth):
     pixels = np.array(bwImg)  # pixels(row, col)
     picWidth = len(np.asarray(bwImg)[0])  # bwImg.size[0]
-    picHeight = len(np.asarray(bwImg))  # bwImg.size[1]
-
     pixels = removeBarLines(lineLocations, pixels, barLineWidth, picWidth)
-
     return pixels
 
 
@@ -194,14 +152,10 @@ def divide(img):
     Img_h, Img_w = img.shape
     # ---------------------------finds the contours that surround the lines ------------------------------------------------------------
     rect = cv.getStructuringElement(cv.MORPH_RECT, (60, 50))  # the structure element
-    img_closing = binary_closing(dilation, rect)
-
     contours = find_contours(dilation, 0.8)
-
     results = []
     width_array = []
     height_array = []
-
     for c in contours:
         ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
         wh = ur - ll  # getting the width and the height

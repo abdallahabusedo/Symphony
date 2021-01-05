@@ -27,7 +27,7 @@ _, line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
 
 # cv.imshow("cut",Rows_images[0])
 # cv.waitKey(0)
-# Image.fromarray(Rows_images[0]).save("out.png")
+
 removedImages = []
 for row in Rows_images:
     bwArray = np.array(row)
@@ -36,17 +36,32 @@ for row in Rows_images:
     lineArray = getLines(horzPicCount, picWidth)
     lineThickness, newLineArray = findBarLineWidth(lineArray)
     lineArray = newLineArray
-    print(lineArray)
     spaceSize, spaceBetweenBars = findSpacesSize(lineArray, lineThickness)
     removed_line_pic = removeMe(row, lineArray, lineThickness)
     removedImages.append(removed_line_pic)
-
 ######### object detection ###############
 objectDetectionImages = []
-for row in removedImages:
-    objectDetectionImages.append(objectDetection(row))
 
-# Image.fromarray(objectDetectionImages[2]).save("out.png")
+finalobject = []
+ymin, ymax = line_positions[0][0], line_positions[0 + 4][0]
+ymin -= 20
+ymax += 20
+out_path = "datasets/"
+i = 0
+for row in removedImages:
+    objectDetectionImg, results = objectDetection(row)
+    for box in results:
+        Y, X, width, height = box
+        if ymin <= Y + (height / 2) <= ymax:
+            finalobject.append(box)
+            cv2.rectangle(objectDetectionImg, (int(X), int(Y)), (int(X + width), int(Y + height)), (0, 255, 0), 1)
+            symbol = objectDetectionImg[int(Y):int(Y + height), int(X):int(X + width)]
+            cv2.imwrite((out_path + str(i) + ".bmp"), symbol)
+            i += 1
+
+    objectDetectionImages.append(objectDetectionImg)
+
+Image.fromarray(objectDetectionImages[0]).save("out.png")
 
 end = time.time()
 print(f"Runtime of the program is {end - start}")
