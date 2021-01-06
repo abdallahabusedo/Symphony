@@ -5,7 +5,7 @@ import skimage
 from PIL import Image
 from scipy import ndimage
 from skimage import io
-from skimage.color import rgb2gray
+from skimage.color import rgb2gray, rgba2rgb
 from skimage.exposure import histogram
 from skimage.filters import threshold_local, threshold_otsu, threshold_yen
 import numpy as np
@@ -257,5 +257,5 @@ def bradley_roth_numpy(image, s=None, t=None):
 
 def thresholding(Rot_image):
 
-    rot_thresholded = bradley_roth_numpy(rgb2gray(Rot_image))
+    rot_thresholded = bradley_roth_numpy(rgb2gray(rgba2rgb(Rot_image)))
     return rot_thresholded
