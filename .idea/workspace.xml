@@ -6,50 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ecc1e63d-4235-4ad9-9ad3-c1cd5f3284eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadWrite.py" beforeDir="false" afterPath="$PROJECT_DIR$/ReadWrite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/0.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/1.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/10.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/11.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/12.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/13.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/14.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/15.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/16.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/17.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/18.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/19.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/2.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/20.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/21.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/22.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/23.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/24.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/25.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/26.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/27.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/28.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/29.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/3.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/30.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/31.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/32.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/33.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/34.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/35.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/36.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/37.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/38.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/4.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/5.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/6.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/7.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/8.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/9.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/26.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/6r.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commonFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/commonFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/5.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/test 1/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/test 1/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputdata/test 1/6.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module1.py" beforeDir="false" afterPath="$PROJECT_DIR$/module1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/thresholding.py" beforeDir="false" afterPath="$PROJECT_DIR$/thresholding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transformation.py" beforeDir="false" afterPath="$PROJECT_DIR$/transformation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +144,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\3rd year\image proc\project\Symphony" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Posidoon\Desktop\Symphony\inputdata" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="ReadWrite" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -199,6 +175,9 @@
       <module name="Symphony" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -283,14 +262,14 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.transformation" />
+        <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.ReadWrite" />
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -316,6 +295,7 @@
       <workItem from="1609115160835" duration="1599000" />
       <workItem from="1609150154134" duration="29051000" />
       <workItem from="1609243868620" duration="21058000" />
+      <workItem from="1610021270184" duration="11016000" />
     </task>
     <servers />
   </component>
@@ -404,11 +384,11 @@
     <SUITE FILE_PATH="coverage/ReadWrite_py$main.coverage" NAME="main Coverage Results" MODIFIED="1609797121289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$commonFunctions.coverage" NAME="commonFunctions Coverage Results" MODIFIED="1609256411723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ReadWrite_py$thresholding.coverage" NAME="thresholding Coverage Results" MODIFIED="1609514924331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/module1_py$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1609966821006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/module1_py$main.coverage" NAME="main Coverage Results" MODIFIED="1609968664167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$preprocessing.coverage" NAME="preprocessing Coverage Results" MODIFIED="1610026372992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$main.coverage" NAME="main Coverage Results" MODIFIED="1610034574559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$ReadWrite.coverage" NAME="ReadWrite Coverage Results" MODIFIED="1609951236607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/module1_py$thresholding.coverage" NAME="thresholding Coverage Results" MODIFIED="1609272630280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/module1_py$transformation.coverage" NAME="transformation Coverage Results" MODIFIED="1609953995131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/module1_py$transformation.coverage" NAME="transformation Coverage Results" MODIFIED="1610030534775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/inputdata/test 3/28.jpg">

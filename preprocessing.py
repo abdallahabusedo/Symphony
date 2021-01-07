@@ -138,90 +138,90 @@ def removeMe(bwImg, lineLocations, barLineWidth):
 
 
 def divide(img):
-        kernel = np.array([
-            [0, 0, 0],
-            [1, 1, 1],
-            [0, 0, 0]
-        ], np.uint8)
-        kernel2 = np.array([
-            [0, 1, 0],
-            [0, 1, 0],
-            [0, 1, 0]
-        ], np.uint8)
-        # ---------------------------dilates the image to get the staff lines only-------------------------------------------------------------
-        # retval, img_binary = cv.threshold(img, 215, 255, type=cv.THRESH_BINARY)
-        dilation = cv.dilate(img, kernel, iterations=50)
-        ii.fromarray(dilation).save('out.png')
+    kernel = np.array([
+        [0, 0, 0],
+        [1, 1, 1],
+        [0, 0, 0]
+    ], np.uint8)
+    kernel2 = np.array([
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0]
+    ], np.uint8)
+    # ---------------------------dilates the image to get the staff lines only-------------------------------------------------------------
+    # retval, img_binary = cv.threshold(img, 215, 255, type=cv.THRESH_BINARY)
+    dilation = cv.dilate(img, kernel, iterations=50)
 
-        Img_h, Img_w = img.shape
-        # ---------------------------finds the contours that surround the lines ------------------------------------------------------------
-        rect = cv.getStructuringElement(cv.MORPH_RECT, (60, 50))  # the structure element
-        contours = find_contours(dilation, 0.8)
-        results = []
-        width_array = []
-        height_array = []
-        for c in contours:
-            ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
-            wh = ur - ll  # getting the width and the height
-            (x, y, w, h) = ll[0], ll[1], wh[1], wh[0]
-            results.append((x, y, w, h))
-            width_array.append(w)
-            height_array.append(h)
-        hi = abs(results[0][0]-results[1][0])
-        hi= hi*2
-        print(hi,results[0][0],results[1][0])
-        widthCount = Counter(width_array)
-        commonWidth = widthCount.most_common(1)  # returns the most frequent width
+    Img_h, Img_w = img.shape
+    # ---------------------------finds the contours that surround the lines ------------------------------------------------------------
+    rect = cv.getStructuringElement(cv.MORPH_RECT, (60, 50))  # the structure element
+    contours = find_contours(dilation, 0.8)
+    results = []
+    width_array = []
+    height_array = []
+    for c in contours:
+        ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
+        wh = ur - ll  # getting the width and the height
+        (x, y, w, h) = ll[0], ll[1], wh[1], wh[0]
+        results.append((x, y, w, h))
+        width_array.append(w)
+        height_array.append(h)
+    hi = abs(results[0][0] - results[1][0])
+    hi = hi * 2
+    print(hi, results[0][0], results[1][0])
+    widthCount = Counter(width_array)
+    commonWidth = widthCount.most_common(1)  # returns the most frequent width
 
-        HeightCount = Counter(height_array)
-        commonHeight = HeightCount.most_common(1)  # returns the most frequent height
+    HeightCount = Counter(height_array)
+    commonHeight = HeightCount.most_common(1)  # returns the most frequent height
 
-        new_results = []
-        for result in results:
-            if result[2] >= commonWidth[0][0] * 0.8 and result[2] <= commonWidth[0][0] * 1.2:
-                new_results.append(result)
+    new_results = []
+    for result in results:
+        if result[2] >= commonWidth[0][0] * 0.8 and result[2] <= commonWidth[0][0] * 1.2:
+            new_results.append(result)
 
-        new_new_results = []
+    new_new_results = []
 
-        for result in new_results:
-            if result[3] >= commonHeight[0][0] * 3:
-                new_new_results.append((result[0] + result[3], result[1], result[2], commonHeight[0][0]))
-            else:
-                new_new_results.append((result[0], result[1], result[2], result[3]))
+    for result in new_results:
+        if result[3] >= commonHeight[0][0] * 3:
+            new_new_results.append((result[0] + result[3], result[1], result[2], commonHeight[0][0]))
+        else:
+            new_new_results.append((result[0], result[1], result[2], result[3]))
 
-        # new_new_result -> has proper widths and heights for lines
+    # new_new_result -> has proper widths and heights for lines
 
-        # When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
-        line_positions = new_new_results
+    # When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
+    line_positions = new_new_results
 
-        for box in new_new_results:
-            X, Y, width, height = box
-            cv.rectangle(dilation, (int(Y), int(X)), (int(Y + width), int(X + height)), (0, 255, 0), int(hi))
+    for box in new_new_results:
+        X, Y, width, height = box
+        cv.rectangle(dilation, (int(Y), int(X)), (int(Y + width), int(X + height)), (0, 255, 0), int(hi))
+    #ii.fromarray(dilation).save('out.png')
+    # ---------------------------finds the main big contours to cut the image-------------------------------------------------------------
 
-        # ---------------------------finds the main big contours to cut the image-------------------------------------------------------------
+    contours = find_contours(dilation, 0.8)
+    results = []
+    for c in contours:
+        ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
+        wh = ur - ll  # getting the width and the height
+        (x, y, w, h) = ll[0], ll[1], wh[1], wh[0]
+        # getting the 4 contours that we have (4 groups of the numbers)
+        results.append((x, y, w, h))
+    # When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
+    i = 1
+    xup = 0
+    l = len(results)
+    ROWSImages = []
+    for box in results:
+        X, Y, width, height = box
+        if i == l:
+            xl = Img_h
+        else:
+            xl, yl, widthl, heightl = results[i]
+        cv.rectangle(dilation, (int(Y), int(X)), (int(Y + Img_w), int(X + height)), (0, 255, 0), 1)
+        Image = img[int(X - (X - xup) / 2):int(X + height + ((xl - X) / 2)), 0:int(Img_w), ]  # Y-50
+        ROWSImages.append(Image)
+        i = i + 1
+        xup = X + height
 
-        contours = find_contours(dilation, 0.8)
-        results = []
-        for c in contours:
-            ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
-            wh = ur - ll  # getting the width and the height
-            (x, y, w, h) = ll[0], ll[1], wh[1], wh[0]
-            # getting the 4 contours that we have (4 groups of the numbers)
-            results.append((x, y, w, h))
-        # When provided with the correct format of the list of bounding_boxes, this section will set all pixels inside boxes in img_with_boxes
-        i = 1
-        xup = 0
-        l = len(results)
-        ROWSImages = []
-        for box in results:
-            X, Y, width, height = box
-            if i == l:
-                xl = Img_h
-            else:
-                xl, yl, widthl, heightl = results[i]
-            cv.rectangle(dilation, (int(Y), int(X)), (int(Y + Img_w), int(X + height)), (0, 255, 0), 1)
-            Image = img[int(X - (X - xup) / 2):int(X + height + ((xl - X) / 2)), 0:int(Img_w), ]  # Y-50
-            ROWSImages.append(Image)
-            i = i + 1
-            xup = X + height
-        return l, line_positions, ROWSImages
+    return l, line_positions, ROWSImages

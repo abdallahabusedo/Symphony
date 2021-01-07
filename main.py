@@ -12,17 +12,20 @@ import time
 
 ##############################
 start = time.time()
-Original_image = io.imread(r'inputdata/test 2/05.PNG')
+Original_image = io.imread(r'inputdata/test-set-camera-captured/test-cases/22.jpg')
 
 ##to modify the light in the image
 b = -30.  # brightness
 c = 190.  # contrast
-Original_image = cv2.addWeighted(np.uint8(Original_image), 1. + c / 127., np.uint8(Original_image), 0, b - c)
-
+Original_image = cv2.addWeighted(np.uint8(Original_image), 1. + c / 127., np.uint8(Original_image), 0.5, b - c)
+## min area rect ,, min sum , max sum ,diff
 ################rotating
 Rotate_image = our_rotate(np.asarray(Original_image))
-#################Thresholding
 thresholed_rotated = thresholding(Rotate_image)
+imagess = getFourCorners(np.asarray(thresholed_rotated))
+
+ii.fromarray(imagess).save('out.bmp')
+
 _, line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
 
 removedImages = []
@@ -63,9 +66,8 @@ for j in range(0, len(removedImages)):
                 objectImages.append(symbol)
                 objectImageswithlines.append(symbolline)
                 Image.fromarray(symbol).save(out_path + str(i) + ".png")
-                Image.fromarray(symbolline).save(out_path + str(i+1) + ".png")
+                Image.fromarray(symbolline).save(out_path + str(i + 1) + ".png")
             i += 2
-            print(symbol.shape[0], symbol.shape[1])
     num.append(len(finalobject))
     objectDetectionImages.append(objectDetectionImg)
 
