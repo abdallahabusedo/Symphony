@@ -10,7 +10,6 @@ from skimage.exposure import histogram
 from skimage.filters import threshold_local, threshold_otsu, threshold_yen
 import numpy as np
 
-
 def Local_Thresholding(original_image):
     block_size = 21
     # calculate the local threshold value
@@ -18,7 +17,6 @@ def Local_Thresholding(original_image):
     # apply the local threshold value on the image
     binary = original_image > threshold_local_value
     return binary
-
 
 # general
 # otsu
@@ -53,28 +51,28 @@ def getThreshold(img):
     img[img > Tinit] = 255
     return img
 
-
 def localThresh(image):
-    h, w = image.shape
-    image11 = image[0:int(h / 2), 0:int(w / 2)]
-    image1 = getThreshold(image11)
+    h,w=image.shape
+    image11=image[0:int(h/2),0:int(w/2)]
+    image1=getThreshold(image11)
 
-    image12 = image[int(h / 2):int(h), 0:int(w / 2)]
-    image2 = getThreshold(image12)
+    image12=image[int(h/2):int(h),0:int(w/2)]
+    image2=getThreshold(image12)
 
-    image13 = image[0:int(h / 2), int(w / 2):int(w)]
-    image3 = getThreshold(image13)
+    image13=image[0:int(h/2),int(w/2):int(w)]
+    image3=getThreshold(image13)
 
-    image14 = image[int(h / 2):int(h), int(w / 2):int(w)]
-    image4 = getThreshold(image14)
-    img1 = getThreshold(image)
+    image14=image[int(h/2):int(h),int(w/2):int(w)]
+    image4=getThreshold(image14)
+    img1=getThreshold(image)
 
-    img2 = np.ones_like(image)
-    img2[0:int(h / 2), 0:int(w / 2)] = image1
-    img2[int(h / 2):int(h), 0:int(w / 2)] = image2
-    img2[0:int(h / 2), int(w / 2):int(w)] = image3
-    img2[int(h / 2):int(h), int(w / 2):int(w)] = image4
+    img2=np.ones_like(image)
+    img2[0:int(h/2),0:int(w/2)]=image1
+    img2[int(h/2):int(h),0:int(w/2)]=image2
+    img2[0:int(h/2),int(w/2):int(w)]=image3
+    img2[int(h/2):int(h),int(w/2):int(w)]=image4
     return img2
+
 
 
 def autsoThreshold(original_image):
@@ -98,29 +96,29 @@ def autsoThreshold(original_image):
     # Maximize the inter_class_variance function val
     index_of_max_val = np.argmax(inter_class_variance)
     threshold = bin_mids[:-1][index_of_max_val]
-    # binary = original_image > threshold
+    #binary = original_image > threshold
     return threshold
-
 
 def Thresholding_fianl(original_image):
     gray_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
-    ret, thresh1 = cv2.threshold(gray_image, 130, 255, cv2.THRESH_BINARY)
+    ret,thresh1 = cv2.threshold(gray_image,130,255,cv2.THRESH_BINARY)
     return thresh1
 
-
 def Thresholding_bradly(input_img):
-    # input_img = cv2.resize(input_img, (400, 400))
+    #input_img = cv2.resize(input_img, (400, 400))
     h, w = input_img.shape
 
     S = w / 4
     s2 = S / 2
     T = 15.0
 
+
     # integral img
     int_img = np.zeros_like(input_img, dtype=np.uint32)
     for col in range(w):
         for row in range(h):
             int_img[row, col] = input_img[0:row, 0:col].sum()
+
 
     # output img
     out_img = np.zeros_like(input_img)
@@ -137,58 +135,57 @@ def Thresholding_bradly(input_img):
 
             sum_ = int(int_img[y1, x1]) - int(int_img[y0, x1]) - int(int_img[y1, x0]) + int(int_img[y0, x0])
 
-            if input_img[row, col] * count < sum_ * (100. - T) / 100.:
+            if input_img[row, col]* count < sum_*(100.-T) / 100.:
                 out_img[row, col] = 0
             else:
                 out_img[row, col] = 255
 
     return out_img
 
-
 def AdaptiveThreshold(gray_image):
     gray_image = cv2.resize(gray_image, (256, 196))
-    w, h = gray_image.shape
+    w,h = gray_image.shape
     S = w / 8
     T = 15.0
     intImg = np.zeros_like(gray_image, dtype=np.uint32)
     for i in range(w):
         sum = 0
         for j in range(h):
-            sum = sum + gray_image[i, j]
+            sum = sum + gray_image[i,j]
             if i == 0:
-                intImg[i, j] = sum
+                intImg[i,j] = sum
             else:
-                intImg[i, j] = intImg[i - 1, j] + sum
+                intImg[i,j] = intImg[i-1,j] + sum
+
 
     out_img = np.zeros_like(gray_image)
     for i in range(w):
         for j in range(h):
-            x1 = i - S // 2
-            x2 = i + S // 2
-            y1 = j - S // 2
-            y2 = j + S // 2
-            count = (x2 - x1) * (y2 - y1)
-            sum = intImg[x2, y2] - intImg[x2, y1 - 1] - intImg[x1 - 1, y2] + intImg[x1 - 1, y1 - 1]
-            if (gray_image[i, j] * count) <= (sum * (100 - T) / 100):
-                out_img[i, j] = 0
+            x1 = i - S//2
+            x2 = i+ S//2
+            y1 = j - S//2
+            y2 = j + S//2
+            count = (x2-x1) * (y2-y1)
+            sum = intImg[x2,y2] - intImg[x2,y1-1] - intImg[x1-1,y2]+intImg[x1-1,y1-1]
+            if (gray_image[i,j] * count ) <= (sum*(100-T)/100):
+                out_img[i,j] = 0
             else:
                 out_img[i, j] = 255
 
     return out_img
-
-
 #####################################
 ##########################################
 ###############################################
 
-# The Chosen one:
+#The Chosen one:
 def bradley_roth_numpy(image, s=None, t=None):
+
     # Convert image to numpy array
     img = np.array(image).astype(np.float)
 
     # Default window size is round(cols/8)
     if s is None:
-        s = np.round(img.shape[1] / 8)
+        s = np.round(img.shape[1]/8)
 
     # Default threshold is 15% of the total
     # area in the window
@@ -199,8 +196,8 @@ def bradley_roth_numpy(image, s=None, t=None):
     intImage = np.cumsum(np.cumsum(img, axis=1), axis=0)
 
     # Define grid of points
-    (rows, cols) = img.shape[:2]
-    (X, Y) = np.meshgrid(np.arange(cols), np.arange(rows))
+    (rows,cols) = img.shape[:2]
+    (X,Y) = np.meshgrid(np.arange(cols), np.arange(rows))
 
     # Make into 1D grid of coordinates for easier access
     X = X.ravel()
@@ -208,19 +205,19 @@ def bradley_roth_numpy(image, s=None, t=None):
 
     # Ensure s is even so that we are able to index into the image
     # properly
-    s = s + np.mod(s, 2)
+    s = s + np.mod(s,2)
 
     # Access the four corners of each neighbourhood
-    x1 = X - s / 2
-    x2 = X + s / 2
-    y1 = Y - s / 2
-    y2 = Y + s / 2
+    x1 = X - s/2
+    x2 = X + s/2
+    y1 = Y - s/2
+    y2 = Y + s/2
 
     # Ensure no coordinates are out of bounds
     x1[x1 < 0] = 0
-    x2[x2 >= cols] = cols - 1
+    x2[x2 >= cols] = cols-1
     y1[y1 < 0] = 0
-    y2[y2 >= rows] = rows - 1
+    y2[y2 >= rows] = rows-1
 
     # Ensures coordinates are integer
     x1 = x1.astype(np.int)
@@ -238,7 +235,7 @@ def bradley_roth_numpy(image, s=None, t=None):
     f2_x = x2
     f2_y = y1 - 1
     f2_y[f2_y < 0] = 0
-    f3_x = x1 - 1
+    f3_x = x1-1
     f3_x[f3_x < 0] = 0
     f3_y = y2
     f4_x = f3_x
@@ -248,41 +245,17 @@ def bradley_roth_numpy(image, s=None, t=None):
     sums = intImage[f1_y, f1_x] - intImage[f2_y, f2_x] - intImage[f3_y, f3_x] + intImage[f4_y, f4_x]
 
     # Compute thresholded image and reshape into a 2D grid
-    out = np.ones(rows * cols, dtype=np.bool)
-    out[img.ravel() * count <= sums * (100.0 - t) / 100.0] = False
+    out = np.ones(rows*cols, dtype=np.bool)
+    out[img.ravel()*count <= sums*(100.0 - t)/100.0] = False
 
     # Also convert back to uint8
-    out = 255 * np.reshape(out, (rows, cols)).astype(np.uint8)
+    out = 255*np.reshape(out, (rows, cols)).astype(np.uint8)
 
     # Return PIL image back to user
     return Image.fromarray(out)
 
 
 def thresholding(Rot_image):
-    rot_thresholded = bradley_roth_numpy(rgb2gray(Rot_image))
+
+    rot_thresholded = bradley_roth_numpy(rgb2gray(rgba2rgb(Rot_image)))
     return rot_thresholded
-
-
-#################Thresholding
-def binarize(image_to_transform, threshold):
-    # now, lets convert that image to a single greyscale image using convert()
-    # output_image=image_to_transform.convert("L")
-    # the threshold value is usually provided as a number between 0 and 255, which
-    # is the number of bits in a byte.
-    # the algorithm for the binarization is pretty simple, go through every pixel in the
-    # image and, if it's greater than the threshold, turn it all the way up (255), and
-    # if it's lower than the threshold, turn it all the way down (0).
-    # so lets write this in code. First, we need to iterate over all of the pixels in the
-    # image we want to work with
-    for x in range(image_to_transform.width):
-        for y in range(image_to_transform.height):
-            # for the given pixel at w,h, lets check its value against the threshold
-            if image_to_transform.getpixel(
-                    (x, y)) < threshold:  # note that the first parameter is actually a tuple object
-                # lets set this to zero
-                image_to_transform.putpixel((x, y), 0)
-            else:
-                # otherwise lets set this to 255
-                image_to_transform.putpixel((x, y), 255)
-    # now we just return the new image
-    return image_to_transform

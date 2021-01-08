@@ -147,7 +147,8 @@ def Corners_Detection(binary_Image):
     imgThreshold = cv2.erode(imgDial, kernel, iterations=1)  # APPLY EROSION
     imgContours = Image.copy()  # COPY IMAGE FOR DISPLAY PURPOSES
     imgBigContour = Image.copy()  # COPY IMAGE FOR DISPLAY PURPOSES
-    contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)  # FIND ALL CONTOURS
+    contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_EXTERNAL,
+                                           cv2.CHAIN_APPROX_SIMPLE)  # FIND ALL CONTOURS
     cv2.drawContours(imgContours, contours, -1, (0, 255, 0), 1)
 
     areas_of_contours = []

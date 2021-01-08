@@ -70,7 +70,7 @@ args = vars(ap.parse_args())
 # NOTE: using the 'eval' function is bad form, but for this example
 # let's just roll with it -- in future posts I'll show you how to
 # automatically determine the coordinates without pre-supplying them
-image = cv2.imread("inputdata/6.png")
+image = cv2.imread("6.png")
 # pts = np.array(eval(args["coords"]), dtype="float32")
 # apply the four point tranform to obtain a "birds eye view" of
 # the image
