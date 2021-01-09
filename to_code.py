@@ -6,7 +6,6 @@ from skimage import io
 import glob
 import itertools
 
-code_line = ['[']
 forlders_guide = {'a_1': 'a/1', 'a_2': 'a/2', 'a_4': 'a/4', 'a_8': 'a/8', 'a_8d_8': 'a/8 d/8',
                   'a_16': 'a/16', 'a_32': 'a/32', 'a1_8b1_8': 'a1/8 b1/8', 'b_2': 'b/2', 'b_4': 'b/4', 'clef': '',
                   'c1_8g1_8': 'c1/8 g1/8', 'cdef1_16': 'c1/16 d1/16 e1/16 f1/16', 'cgde1_16': 'c1/16 g1/16 d1/16 e1/16',
@@ -51,37 +50,46 @@ def to_code(start, end, lines, folder_name):
     code = forlders_guide.get(folder_name)
     space = lines[1] - lines[0]
     if code == 'a/1' or code == 'a/2' or code == 'a/4' or code == 'a/8' or code == 'a/16' or code == 'a/32':
-        if lines[4] + 2 * space >= end >= lines[4] + space:
+        if   end > lines[4]+space and lines[2] > start > lines[1]:
             code = code.replace('a', 'c1')
-        elif lines[4] + space >= end >= lines[4]:
+        elif  lines[4]+0.7*space < end  and  start < lines[1] :
             code = code.replace('a', 'd1')
-        elif lines[4] + 0.3 * space >= end >= lines[3] + 0.3 * space:
+        elif  lines[4] < end  and  lines[0] < start < lines[1] :
             code = code.replace('a', 'e1')
-        elif lines[4] >= end >= lines[3]:
-            code = code.replace('a', 'f1')
-        elif lines[3] + 0.3 * space >= end >= lines[2] + 0.3 * space:
-            code = code.replace('a', 'g1')
-        elif lines[3] >= end >= lines[2]:
+        elif  lines[2] < end < lines[3]+ 0.3*space  and  lines[0] > start :
             code = code.replace('a', 'a1')
+        elif  lines[3] < end < lines[4]  and  lines[0] > start :
+            code = code.replace('a', 'g1')
+        else :# lines[3] < end <= lines[4]  and  lines[0] > start :
+            code = code.replace('a', 'f1')
+
+
     # --------------------------------------------------------------------------------------------------
     if code == 'b/1' or code == 'b/2' or code == 'b/4' or code == 'b/8' or code == 'b/16' or code == 'b/32':
-        if start <= lines[0] - 2 * space:
+        if lines[0] - 2 * space >= start >= lines[0] - 2.5 * space :
             code = code.replace('b', 'b2')
         elif lines[0] - 1.5 * space >= start >= lines[0] - 2 * space:
             code = code.replace('b', 'a2')
-        elif lines[0] >= start >= lines[0] - space:
+        elif lines[0] >= start >= lines[0] - 1.3* space:
             code = code.replace('b', 'g2')
-        elif lines[0] >= start >= lines[0] - 0.3 * space:
-            code = code.replace('b', 'f2')
-        elif lines[1] >= start >= lines[0]:
-            code = code.replace('b', 'e2')
-        elif lines[2] - 0.3 * space >= start > lines[1] - 0.3 * space:
-            code = code.replace('b', 'd2')
         elif lines[2] >= start >= lines[1]:
             code = code.replace('b', 'c2')
-        elif lines[3] - 0.3 * space >= start >= lines[2] - 0.3 * space:
-            code = code.replace('b', 'b1')
 
+        # if lines[0] - 1.5 * space > start > lines[0] - 2 * space :
+        #     code = code.replace('b', 'b2')
+        # elif  lines[0] >= start >= lines[0] - space and end > lines[3] + 0.7* space:
+        #     code = code.replace('b', 'f2') 
+        # elif  lines[0] >= start >= lines[0] - space:
+        #     code = code.replace('b', 'g2')
+        # elif  lines[1] > start > lines[0] and end < lines[4] + 0.3*space:
+        #     code = code.replace('b', 'e2')
+        # elif  lines[1] > start > lines[0] and end > lines[4]:
+        #     code = code.replace('b', 'd2')
+        # else:
+        #     code = code.replace('b', 'a2')
+
+        # lines[0] - 1.5 * space > start > lines[0] - 2 * space :
+        #     code = code.replace('b', 'a2')
     return code
 
 
@@ -95,7 +103,7 @@ def get_similar_temp(template):
             g = f.split('\\')
             l = len(g)
             folder_name.append(g[l - 2])
-            print(g[l - 2])
+            # print(g[l - 2])
             # print (g)
     read_images = []
     for image in imagenames_list:
@@ -105,25 +113,20 @@ def get_similar_temp(template):
     max_img = []
     max_loc = 0
     for i, j in zip(read_images, folder_name):
-        # show_images([i],titles=[j])
-        print(j)
-        print(i.shape)
+        # print(j)
+        # print(i.shape)
         if len(i.shape) != 2:
             img = cv2.cvtColor(i, cv2.COLOR_BGR2GRAY)
         else:
             img = i
-        # cv2.imshow("i",i)
-        # cv2.waitKey()
-        # cv2.destroyAllWindows()
         h, w = template.shape[::]
         if h <= img.shape[0] and w <= img.shape[1]:
             res = cv2.matchTemplate(img, template, cv2.TM_CCOEFF_NORMED)
             plt.imshow(res, cmap='gray')
-            threshold = 1  # Pick only values above 0.8. For TM_CCOEFF_NORMED, larger values = good fit.
             maxx = []
             for r in res:
                 maxx.append(max(r))
-            print(max(maxx) * 100)
+            # print(max(maxx) * 100)
             if (max(maxx) * 100 >= max_sim):
                 max_sim = max(maxx) * 100
                 g = j.split('\\')
@@ -132,19 +135,18 @@ def get_similar_temp(template):
                 max_img = i
                 max_loc = np.where(res == max(maxx))
             loc = np.where(res == max(maxx))
-            print(loc)
+            # print(loc)
             # Outputs 2 arrays. Combine these arrays to get x,y coordinates - take x from one array and y from the other.
             # Reminder: ZIP function is an iterator of tuples where first item in each iterator is paired together,
             # then the second item and then third, etc.
-        else:
-            print("no")
-    print("max_sim: ", max_sim)
-    print("path: ", max_path)
-    print("max_loc: ", max_loc)
+    #     else:
+    #         # print("no")
+    # print("max_sim: ", max_sim)
+    # print("path: ", max_path)
+    # print("max_loc: ", max_loc)
     for pt in zip(*max_loc[::-1]):  # -1 to swap the values as we assign x and y coordinate to draw the rectangle.
-        # Draw rectangle around each object. We know the top left (pt), draw rectangle to match the size of the template image.
         cv2.rectangle(max_img, pt, (pt[0] + w, pt[1] + h), (0, 0, 0), 1)
-        cv2.imshow("Matched image", max_img)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
+        # cv2.imshow("Matched image", max_img)
+        # cv2.waitKey()
+        # cv2.destroyAllWindows()
     return max_path
