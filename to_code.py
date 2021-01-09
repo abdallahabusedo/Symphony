@@ -6,14 +6,14 @@ from skimage import io
 import glob
 import itertools
 
-forlders_guide = {'a_1': 'a/1', 'a_2': 'a/2', 'a_4': 'a/4', 'a_8': 'a/8', 'a_8d_8': 'a/8 d/8',
-                  'a_16': 'a/16', 'a_32': 'a/32', 'a1_8b1_8': 'a1/8 b1/8', 'b_2': 'b/2', 'b_4': 'b/4', 'clef': '',
-                  'c1_8g1_8': 'c1/8 g1/8', 'cdef1_16': 'c1/16 d1/16 e1/16 f1/16', 'cgde1_16': 'c1/16 g1/16 d1/16 e1/16',
-                  'cgde2_16': 'c2/16 g2/16 d2/16 e2/16', '4e_16': 'e1/16 e1/16 e1/16 e1/16', 'e_8c_8': 'e/8 c/8',
-                  'fgab1_16': 'f1/16 g1/16 a1/16 b1/16', 'b14_e14_g14': '{b/14 e/14 g/14}',
-                  'b14_f14_g14': '{b/14 f/14 g/14}',
-                  'c14_e14_g14': '{c/14 e/14 g/14}', 'g14_e14': '{g/14 e/14}', '#': '#', '##': '##', '&': '&',
-                  '&&': '&&', '.hi': '.',
+forlders_guide = {'a_1': ' a/1', 'a_2': ' a/2', 'a_4': ' a/4', ' a_8': ' a/8', 'a_8d_8': ' a/8 d/8',
+                  'a_16': ' a/16', 'a_32': ' a/32', 'a1_8b1_8': ' a1/8 b1/8', 'b_2': ' b/2', 'b_4': ' b/4', 'clef': ' ',
+                  'c1_8g1_8': ' c1/8 g1/8', 'cdef1_16': ' c1/16 d1/16 e1/16 f1/16', ' cgde1_16': ' c1/16 g1/16 d1/16 e1/16',
+                  'cgde2_16': ' c2/16 g2/16 d2/16 e2/16', '4e_16': ' e1/16 e1/16 e1/16 e1/16', 'e_8c_8': ' e/8 c/8',
+                  'fgab1_16': ' f1/16 g1/16 a1/16 b1/16', 'b14_e14_g14': ' {b/14 e/14 g/14}',
+                  'b14_f14_g14': ' {b/14 f/14 g/14}',
+                  'c14_e14_g14': ' {c/14 e/14 g/14}', 'g14_e14': ' {g/14 e/14}', '#': ' #', '##': ' ##', '&': ' &',
+                  '&&': ' &&', '.hi': '.',
                   '2': '2', '4': '4'
                   }
 
@@ -38,12 +38,12 @@ def arrange_code_string(code_line):
                 continue
         if c == '#' or c == '##' or c == '&' or c == '&&':
             symbol = c
-            code_line[i] = ''
+            code_line[i] = ' '
             code_old = code_line[i + 1]
             # code_new = code_old.split('/')[0] + symbol + '/' + code_old.split('/')[1]
             code_new = code_old[0]+symbol+code_old[1:len(code_old)]
             code_line[i + 1] = code_new
-    code_string = " ".join(code_line)
+    code_string = "".join(code_line)
     return code_string
 
 
