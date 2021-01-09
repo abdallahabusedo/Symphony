@@ -36,12 +36,13 @@ def arrange_code_string(code_line):
             elif c == '2':
                 code_line[3] = code_line[3].replace('2', '2">')
                 continue
-    if c == '#' or c == '##' or c == '&' or c == '&&':
-        symbol = c
-        code_line[i] = ''
-        code_old = code_line[i + 1]
-        code_new = code_old.split('/')[0] + symbol + '/' + code_old.split('/')[1]
-        code_line[i + 1] = code_new
+        if c == '#' or c == '##' or c == '&' or c == '&&':
+            symbol = c
+            code_line[i] = ''
+            code_old = code_line[i + 1]
+            # code_new = code_old.split('/')[0] + symbol + '/' + code_old.split('/')[1]
+            code_new = code_old[0]+symbol+code_old[1:len(code_old)]
+            code_line[i + 1] = code_new
     code_string = " ".join(code_line)
     return code_string
 
@@ -60,7 +61,7 @@ def to_code(start, end, lines, folder_name):
             code = code.replace('a', 'a1')
         elif  lines[3] < end < lines[4]  and  lines[0] > start :
             code = code.replace('a', 'g1')
-        else :# lines[3] < end <= lines[4]  and  lines[0] > start :
+        else :
             code = code.replace('a', 'f1')
 
 
@@ -70,26 +71,18 @@ def to_code(start, end, lines, folder_name):
             code = code.replace('b', 'b2')
         elif lines[0] - 1.5 * space >= start >= lines[0] - 2 * space:
             code = code.replace('b', 'a2')
-        elif lines[0] >= start >= lines[0] - 1.3* space:
-            code = code.replace('b', 'g2')
+        elif lines[3] > start > lines[1] and end > lines[4]:
+            code = code.replace('b', 'b1')
         elif lines[2] >= start >= lines[1]:
             code = code.replace('b', 'c2')
-
-        # if lines[0] - 1.5 * space > start > lines[0] - 2 * space :
-        #     code = code.replace('b', 'b2')
-        # elif  lines[0] >= start >= lines[0] - space and end > lines[3] + 0.7* space:
-        #     code = code.replace('b', 'f2') 
-        # elif  lines[0] >= start >= lines[0] - space:
-        #     code = code.replace('b', 'g2')
-        # elif  lines[1] > start > lines[0] and end < lines[4] + 0.3*space:
-        #     code = code.replace('b', 'e2')
-        # elif  lines[1] > start > lines[0] and end > lines[4]:
-        #     code = code.replace('b', 'd2')
-        # else:
-        #     code = code.replace('b', 'a2')
-
-        # lines[0] - 1.5 * space > start > lines[0] - 2 * space :
-        #     code = code.replace('b', 'a2')
+        elif lines[1] >= start >= lines[0] and lines[3] <= end <=lines[4] + 0.3*space:
+            code = code.replace('b', 'e2')
+        elif lines[1] > start >  lines[0]-0.5*space:
+            code = code.replace('b', 'd2')
+        elif lines[0] > start > lines[0]-0.7*space and end > lines[3] + 0.5*space:
+            code = code.replace('b', 'f2')
+        elif lines[0] >= start >= lines[0] - 1.3* space:
+            code = code.replace('b', 'g2')
     return code
 
 
