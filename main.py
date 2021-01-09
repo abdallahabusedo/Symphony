@@ -14,7 +14,7 @@ import time
 ##############################
 start = time.time()
 
-Original_image = io.imread(r'inputdata/test 2/02.PNG')
+Original_image = io.imread(r'inputdata/test 2/10.PNG')
 
 ##to modify the light in the image
 b = -30.  # brightness
@@ -41,6 +41,7 @@ for row in Rows_images:
     removed_line_pic = removeMe(row, lineArray, lineThickness)
     removedImages.append(removed_line_pic)
 
+
 ######### object detection ###############
 objectDetectionImages = []
 
@@ -61,7 +62,6 @@ for j in range(0, len(removedImages)):
     objectDetectionImg, results = objectDetection(removedImages[j])
     results = sorted(results)
     objectImages = []
-    print(results)
     final_positions.append(results)
     for box in results:
         X, Y, width, height = box
@@ -85,21 +85,21 @@ finallllllll = []
 for i in range(len(final_array)):  # 0 -> 3
     code_line = ['[']
     ob = final_array[i]
-    #print("ob", len(ob))
     objectIndex = 0
+    asda = biglineArray[i]
     for xc in ob:
-        #print("Asd",final_positions[objectIndex][0],final_positions[objectIndex][0] + final_positions[objectIndex][3] ,biglineArray[i])
         path = get_similar_temp(xc)
-        #print("print" , path)
-        code = to_code(final_positions[i][objectIndex][0],
-                       final_positions[i][objectIndex][0] + final_positions[i][objectIndex][3],
-                       biglineArray[i], path)
+        # print(final_positions[i][objectIndex][1], final_positions[i][objectIndex][1] + final_positions[i][objectIndex][3],asda)
+        code = to_code(final_positions[i][objectIndex][1],
+                       final_positions[i][objectIndex][1] + final_positions[i][objectIndex][3],
+                       asda, path)
         code_line.append(code)
         objectIndex += 1
     code_line.append(']')
-    code_string = arrange_code_string(code)
+    code_string = arrange_code_string(code_line)
     finallllllll.append(code_string)
 finallllllll = "\n".join(finallllllll)
+
 
 print(finallllllll)
 end = time.time()
