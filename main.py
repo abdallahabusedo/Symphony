@@ -14,7 +14,7 @@ import time
 ##############################
 start = time.time()
 
-Original_image = io.imread(r'inputdata/test 2/10.PNG')
+Original_image = io.imread("inputdata/test 2/10.PNG")
 
 ##to modify the light in the image
 b = -30.  # brightness
@@ -26,6 +26,7 @@ Rotate_image = our_rotate(np.asarray(Original_image))
 #################Thresholding
 thresholed_rotated = thresholding(Rotate_image)
 _, line_positions, Rows_images = divide(np.uint8(thresholed_rotated))
+
 
 removedImages = []
 biglineArray = []
@@ -66,9 +67,21 @@ for j in range(0, len(removedImages)):
     for box in results:
         X, Y, width, height = box
         if ymin <= Y + (height / 2) <= ymax:
-            cv2.rectangle(objectDetectionImg, (int(X), int(Y)), (int(X + width), int(Y + height)), (0, 255, 0), 1)
+            cv2.rectangle(objectDetectionImg, (int(X), int(Y)), (int(X + width), int(Y + height)), (0, 0, 0), 1)
+            if width < 0 :
+                width = abs(width) 
+            if height < 0 :
+                height=abs(height) 
+            if Y < 0 : 
+                Y= abs(Y)
+            if X < 0 : 
+                X= abs(X)
+            # print(X,Y,X+width,Y+height)
             symbol = objectDetectionImg[int(Y):int(Y + height), int(X):int(X + width)].copy()
             symbolline = Rows_images[j][int(Y):int(Y + height), int(X):int(X + width)].copy()
+            # cv2.imshow("haha",symbolline)
+            # cv2.waitKey(0)
+            # print(symbol.shape[0],symbol.shape[1])
             if symbol.shape[0] != 0 and symbol.shape[1] != 0:
                 finalobject.append(box)
                 objectImages.append(symbol)
@@ -87,6 +100,7 @@ for i in range(len(final_array)):  # 0 -> 3
     ob = final_array[i]
     objectIndex = 0
     asda = biglineArray[i]
+    print(len(ob))
     for xc in ob:
         path = get_similar_temp(xc)
         # print(final_positions[i][objectIndex][1], final_positions[i][objectIndex][1] + final_positions[i][objectIndex][3],asda)
