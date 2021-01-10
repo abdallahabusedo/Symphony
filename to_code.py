@@ -50,7 +50,7 @@ def arrange_code_string(code_line):
 def to_code(start, end, lines, folder_name):
     code = forlders_guide.get(folder_name)
     space = lines[1] - lines[0]
-    if code == 'a/1' or code == 'a/2' or code == 'a/4' or code == 'a/8' or code == 'a/16' or code == 'a/32':
+    if code == ' a/1' or code == ' a/2' or code == ' a/4' or code == ' a/8' or code == ' a/16' or code == ' a/32':
         if   end > lines[4]+space and lines[2] > start > lines[1]:
             code = code.replace('a', 'c1')
         elif  lines[4]+0.7*space < end  and  start < lines[1] :
@@ -66,7 +66,7 @@ def to_code(start, end, lines, folder_name):
 
 
     # --------------------------------------------------------------------------------------------------
-    if code == 'b/1' or code == 'b/2' or code == 'b/4' or code == 'b/8' or code == 'b/16' or code == 'b/32':
+    if code == ' b/1' or code == ' b/2' or code == ' b/4' or code == ' b/8' or code == ' b/16' or code == ' b/32':
         if lines[0] - 2 * space >= start >= lines[0] - 2.5 * space :
             code = code.replace('b', 'b2')
         elif lines[0] - 1.5 * space >= start >= lines[0] - 2 * space:
