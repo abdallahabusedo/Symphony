@@ -1,10 +1,8 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-from os import listdir
 from skimage import io
 import glob
-import itertools
 
 forlders_guide = {'a_1': ' a/1', 'a_2': ' a/2', 'a_4': ' a/4', ' a_8': ' a/8', 'a_8d_8': ' a/8 d/8',
                   'a_16': ' a/16', 'a_32': ' a/32', 'a1_8b1_8': ' a1/8 b1/8', 'b_2': ' b/2', 'b_4': ' b/4', 'clef': ' ',

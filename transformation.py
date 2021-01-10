@@ -1,11 +1,21 @@
-import cv2
-import numpy as np
-import skimage
-from skimage import io
-from skimage.transform import hough_line
 from thresholding import *
-import imutils
 
+
+
+def objectDetection(LineRemoved):
+    contours, hire = cv2.findContours(255-LineRemoved, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cont = []
+    for j in range(0, len(contours)):
+        if hire[0, j, 3] == -1:
+            cont.append(contours[j])
+    results = []
+    for c in cont:
+        ll, ur = np.min(c, 0), np.max(c, 0)  # getting the two points
+        wh = ur - ll  # getting the width and the height
+        (x, y, h, w) = ll[0][0], ll[0][1], wh[0][1], wh[0][0]
+        if w*h > 10:  #Habda men el level el te2eel
+            results.append((x-3, y-3, w+6, h+6))
+    return LineRemoved, results
 
 def getAngle(img):
     # Convert the image to gray-scale

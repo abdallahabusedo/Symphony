@@ -1,14 +1,8 @@
 from collections import Counter
 import numpy as np
 import cv2 as cv
-import matplotlib.pyplot as plt
-from skimage import filters
-from skimage import io
-import skimage
 from PIL import Image as ii
-# returns an array of the number of black pixels in each row of the picture
 from skimage.measure import find_contours
-from skimage.morphology import binary_closing
 
 
 def horizontalProjection(bwArray):
@@ -151,8 +145,6 @@ def divide(img):
         # ---------------------------dilates the image to get the staff lines only-------------------------------------------------------------
         # retval, img_binary = cv.threshold(img, 215, 255, type=cv.THRESH_BINARY)
         dilation = cv.dilate(img, kernel, iterations=50)
-        ii.fromarray(dilation).save('out.png')
-
         Img_h, Img_w = img.shape
         # ---------------------------finds the contours that surround the lines ------------------------------------------------------------
         rect = cv.getStructuringElement(cv.MORPH_RECT, (60, 50))  # the structure element
@@ -169,7 +161,6 @@ def divide(img):
             height_array.append(h)
         hi = abs(results[0][0]-results[1][0])
         hi= hi*2
-        print(hi,results[0][0],results[1][0])
         widthCount = Counter(width_array)
         commonWidth = widthCount.most_common(1)  # returns the most frequent width
 
