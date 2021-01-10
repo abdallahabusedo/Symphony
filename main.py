@@ -89,7 +89,7 @@ def main(in_name, out_name):
                     if symbol.shape[0] != 0 and symbol.shape[1] != 0:
                         finalobject.append(box)
                         objectImages.append(symbol)
-                        objectImageswithlines.append(symbolline)
+                        # objectImageswithlines.append(symbolline)
                         # Image.fromarray(symbol).save(out_path + str(i) + ".png")
                         # Image.fromarray(symbolline).save(out_path + str(i + 1) + ".png")
                     i += 2
@@ -117,7 +117,7 @@ def main(in_name, out_name):
         finallllllll = "\n".join(finallllllll)
         file1 = open(r""+out_name+"/" + fn[:fn.index(".")] + ".txt", "a")
         file1.write(finallllllll)
-
+    file1.close()
     end = time.time()
     print(f"Runtime of the program is {end - start}")
 
