@@ -10,9 +10,9 @@ forlders_guide = {'a_1': ' a/1', 'a_2': ' a/2', 'a_4': ' a/4', ' a_8': ' a/8', '
                   'a_16': ' a/16', 'a_32': ' a/32', 'a1_8b1_8': ' a1/8 b1/8', 'b_2': ' b/2', 'b_4': ' b/4', 'clef': ' ',
                   'c1_8g1_8': ' c1/8 g1/8', 'cdef1_16': ' c1/16 d1/16 e1/16 f1/16', ' cgde1_16': ' c1/16 g1/16 d1/16 e1/16',
                   'cgde2_16': ' c2/16 g2/16 d2/16 e2/16', '4e_16': ' e1/16 e1/16 e1/16 e1/16', 'e_8c_8': ' e/8 c/8',
-                  'fgab1_16': ' f1/16 g1/16 a1/16 b1/16', 'b14_e14_g14': ' {b/14 e/14 g/14}',
-                  'b14_f14_g14': ' {b/14 f/14 g/14}',
-                  'c14_e14_g14': ' {c/14 e/14 g/14}', 'g14_e14': ' {g/14 e/14}', '#': ' #', '##': ' ##', '&': ' &',
+                  'fgab1_16': ' f1/16 g1/16 a1/16 b1/16', 'b14_e14_g14': ' {b1/4 , e1/4 , g1/4}',
+                  'b14_f14_g14': ' {b1/4 , f1/4 , g1/4}',
+                  'c14_e14_g14': ' {c1/4 , e1/4 , g1/4}', 'g14_e14': ' {g1/4 , e1/4}', '#': ' #', '##': ' ##', '&': ' &',
                   '&&': ' &&', '.hi': '.',
                   '2': '2', '4': '4'
                   }
@@ -22,29 +22,33 @@ def arrange_code_string(code_line):
     i = -1
     for c in code_line:
         i += 1
-        if i == 2:
-            if c == '4':
-                code_line[2] = code_line[2].replace('4', 'meter <"4/')
-                continue
-            elif c == '2':
-                code_line[2] = code_line[2].replace('2', 'meter <"2/')
-                continue
-        elif i == 3:
-            if c == '4':
-                code_line[3] = code_line[3].replace('4', '4">')
-                continue
-            elif c == '2':
-                code_line[3] = code_line[3].replace('2', '2">')
-                continue
-        if c == '#' or c == '##' or c == '&' or c == '&&':
+        if c == '4' :
+            code_line[i] = code_line[i].replace('4', '\meter <"4/')
+            if code_line[i+1] == '4' :
+                code_line[i+1] = code_line[i+1].replace('4', '4">')
+            elif code_line[i+1] == '2' :
+                code_line[i+1] = code_line[i+1].replace('2', '2">')
+        if c == '2' :
+            code_line[i] = code_line[i].replace('2', '\meter <"2/')
+            if code_line[i+1] == '4' :
+                code_line[i+1] = code_line[i+1].replace('4', '4">')
+            elif code_line[i+1] == '2' :
+                code_line[i+1] = code_line[i+1].replace('2', '2">')
+        if c == ' #' or c == ' ##' or c == ' &' or c == ' &&':
             symbol = c
             code_line[i] = ' '
             code_old = code_line[i + 1]
             # code_new = code_old.split('/')[0] + symbol + '/' + code_old.split('/')[1]
-            code_new = code_old[0]+symbol+code_old[1:len(code_old)]
+            code_new = code_old[0]+code_old[1]+symbol[1:len(symbol)]+code_old[2:len(code_old)]
             code_line[i + 1] = code_new
+        if c==None :
+            code_line[i]=" "
     code_string = "".join(code_line)
     return code_string
+
+
+
+
 
 
 def to_code(start, end, lines, folder_name):
@@ -87,6 +91,13 @@ def to_code(start, end, lines, folder_name):
 
 
 def get_similar_temp(template):
+    # cv2.imshow("template", template)
+    # cv2.waitKey()
+    # cv2.destroyAllWindows()
+    if template.shape <= (22,22):
+        return ".hi"
+    if template.shape[1] < 15 :
+        return "clef"
     folders = glob.glob("ourdata/*")
     imagenames_list = []  # path to img
     folder_name = []

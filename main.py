@@ -14,7 +14,7 @@ import time
 ##############################
 start = time.time()
 
-Original_image = io.imread("inputdata/test 2/10.PNG")
+Original_image = io.imread("inputdata/test 2/02.PNG")
 
 ##to modify the light in the image
 b = -30.  # brightness
