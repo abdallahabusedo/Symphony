@@ -52,6 +52,7 @@ def findSpacesSize(lineArray, lineThickness):
         lineDistances.append(lineArray[i + 1] - lineArray[i])
     # gets the mode of the array(most common space size)
     spacesCount = Counter(lineDistances)
+
     spaceBetweenBars = max(lineDistances)
     tempSpaceInfo = spacesCount.most_common(1)  # returns the most frequent distance
     commonSize = tempSpaceInfo[0][0]
