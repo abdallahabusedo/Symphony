@@ -10,37 +10,21 @@
 
 The aim of this project is to develop a sheet music reader. This field is called Optical Music Recognition (OMR). Its objective is to convert sheet music to a machine-readable version. We take a simplified version where we convert an image of sheet music to a textual representation that can be further processed to produce midi files or audio files like wav or mp3. 
 
-# project Expiation
-
-all libraries that we use 
-
-```
-import cv2
-from skimage.filters import gaussian ,threshold_otsu, threshold_local
-from skimage import io
-import numpy as np
-```
-## apply local thresholding on the image to fix the light and remove it 
-
-```
-Image_path = "note2.png"
-# to read the image in a grey scale mode
-Image = cv2.imread(Image_path, 0)
-
-# handle poop lightning: by applying local thresholding on the image
-# in order to apply thresholding
-# calculating the block size
-# ------------------------to do make it general to all images------------------------#
-block_size = 41
-# calculate the local threshold value
-threshold_local_value  = threshold_local(Image ,block_size, offset=10)
-# apply the local threshold value on the image
-binary_image = Image > threshold_local_value
-```
 
 result 
 
-![image](https://user-images.githubusercontent.com/42722816/102087446-3beb0400-3e22-11eb-83b1-e1ff83628098.png)
+<div align="center">
+
+
+![image](https://user-images.githubusercontent.com/42722816/106170970-b3d67900-6199-11eb-964b-d2c1b50428fe.png)
+
+![image](https://user-images.githubusercontent.com/42722816/106171011-c18bfe80-6199-11eb-981c-175d719ad248.png)
+
+![image](https://user-images.githubusercontent.com/42722816/106171589-60b0f600-619a-11eb-812e-bed75c36f5f2.png)
+
+![image](https://user-images.githubusercontent.com/42722816/106171651-7c1c0100-619a-11eb-8d67-846ffa7d0292.png)
+
+</div>
 
 
 ## Contributors
