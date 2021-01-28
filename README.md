@@ -16,9 +16,9 @@ result
 <div align="center">
 
 
-![image](https://user-images.githubusercontent.com/42722816/106170970-b3d67900-6199-11eb-964b-d2c1b50428fe.png)
+![image](https://user-images.githubusercontent.com/42722816/106172057-fe0c2a00-619a-11eb-8fd9-4578a0a8f919.png)
 
-![image](https://user-images.githubusercontent.com/42722816/106171011-c18bfe80-6199-11eb-981c-175d719ad248.png)
+![image](https://user-images.githubusercontent.com/42722816/106172070-07959200-619b-11eb-9c4d-da6a091822ba.png)
 
 ![image](https://user-images.githubusercontent.com/42722816/106171589-60b0f600-619a-11eb-812e-bed75c36f5f2.png)
 
